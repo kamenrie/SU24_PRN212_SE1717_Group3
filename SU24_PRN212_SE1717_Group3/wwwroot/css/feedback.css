@@ -1,0 +1,194 @@
+﻿* {
+    box-sizing: border-box;
+    margin:1% 0;
+}
+
+.feedback-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10%;
+}
+
+.feedback-icon {
+    font-size: 5rem;
+}
+
+.feedback-hihi {
+    display: flex;
+    margin: 2% 10%;
+}
+
+.feedback-content {
+    text-align: center;
+    font-size: 2.5rem;
+    & :nth-child(1)
+
+{
+    color: #e84343;
+}
+
+& :nth-child(2) {
+    color: #86e73a;
+}
+
+}
+
+.feedback-input {
+    display: flex;
+    padding: 2% 7%;
+}
+
+.ava-user {
+    width: 10%;
+    text-align: center;
+    & img
+
+{
+    width: 85%;
+    clip-path: circle(50%);
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+}
+
+.feedback-input-content {
+    width: 89%;
+    padding: 0 1%;
+    & textarea
+
+{
+    margin-bottom: 1%;
+    font-size: 1.125rem;
+    width: 100%;
+    resize: none;
+    border: hidden;
+    background-color: #d9d9d9;
+    padding: 2%;
+    overflow: hidden;
+    &:focus-visible
+
+{
+    outline: #000 auto 1px;
+}
+
+&::placeholder {
+    color: #666666;
+}
+
+}
+}
+
+.group-of-button {
+    text-align: right;
+    & button
+
+{
+    padding: 1% 0;
+    width: 15%;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.35rem;
+}
+
+& .cancel {
+    background-color: none;
+}
+
+& .send {
+    background-color: #0099ff;
+    color: white;
+}
+
+}
+
+.feedback-user-ava {
+    width: 10%;
+    margin-left: 2%;
+    position: relative;
+    & img
+
+{
+    position: absolute;
+    width: 60%;
+    clip-path: circle(50%);
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    right: 0;
+}
+
+}
+
+.feedback-user-content {
+    width: 90%;
+}
+
+.feedback-user-content-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1% 0;
+    align-items: center;
+    & i
+
+{
+    font-weight: bold;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: 0.1s;
+    &:hover
+
+{
+    font-size: 2rem;
+}
+
+}
+}
+
+.feedback-user-content-info {
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    align-items: center;
+    padding: 1% 2%;
+    & i
+
+{
+    font-size: 0.35rem;
+}
+
+}
+
+.feedback-admin-content {
+    border-left: #00ff00 solid 4px;
+    padding-left: 2%;
+    margin: 2% 0;
+}
+
+.feedback-admin-content-info {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    align-items: center;
+    & i
+
+{
+    font-size: 0.35rem;
+}
+
+}
+
+.feedback-user-name {
+    font-weight: bold;
+}
+
+.feedback-comment {
+    padding: 1% 2%;
+    min-height: 200px;
+    background: #d9d9d9;
+}
+
+.admin-reponse {
+    min-height: 200px;
+    padding: 2%;
+}
+

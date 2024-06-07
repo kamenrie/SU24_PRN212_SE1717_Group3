@@ -1,0 +1,207 @@
+﻿@inject SU24_PRN212_SE1717_Group3.DataAccess.ApplicationDbContext dbcontext
+
+@{
+    int? accountID = Context.Session.GetInt32("accountid");
+    var account = dbcontext.Account.FirstOrDefault(x => x.Id == accountID);
+    
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SU24_PRN212_SE1717_Group3</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/31a6f4185b.js"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+    @if (account == null)
+    {
+        <header>
+            <div class="header--container">
+                <div class="logo">
+                    <img src="~/img/Logo.png" alt="">
+                </div>
+                <div class="header--menu--container">
+                    <div class="search">
+                        <input type="search" placeholder="Search...">
+                    </div>
+                    <nav class="navbar">
+                        <ul class="navbar--list">
+                            <li class="menu">
+                                <i class="fa-solid fa-bars"></i>
+                                <ul class="subnav">
+                                    <li><a href="#">All Product</a> </li>
+                                    <li><a href="#">Men's Shoes</a></li>
+                                    <li><a href="#">Women's Shoes</a></li>
+                                    <li><a href="#">Sport Shoes</a> </li>
+                                    <li><a href="#">Sandal</a></li>
+                                </ul>
+                            </li>
+                            <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+                            <li><a asp-action="contact" asp-controller="Home">Contact</a></li>
+                            <li><a asp-action="aboutus" asp-controller="Home">About us</a></li>
+                            <li><a asp-action="feedback" asp-controller="feedback">FeedBack</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="cart-container">
+                    <div class="icon-cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <div class="btn-Login">
+                        <Button onclick="window.location.href='/Auth/Login'" class="Login">Login</Button>
+                    </div>
+                </div>
+            </div>
+        </header>
+    }
+    @if (account != null)
+    {
+        <header>
+            <div class="header--container">
+                <div class="logo">
+                    <img src="~/img/Logo.png" alt="">
+                </div>
+                <div class="header--menu--container">
+
+                    <div class="search">
+                        <input type="search" placeholder="Search...">
+
+                    </div>
+                    <nav class="navbar">
+                        <ul class="navbar--list">
+                            <li class="menu">
+                                <i class="fa-solid fa-bars"></i>
+                                <ul class="subnav">
+                                    <li><a href="#">All Product</a> </li>
+                                    <li><a href="#">Men's Shoes</a></li>
+                                    <li><a href="#">Women's Shoes</a></li>
+                                    <li><a href="#">Sport Shoes</a> </li>
+                                    <li><a href="#">Sandal</a></li>
+                                </ul>
+                            </li>
+                            <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+                            <li><a asp-action="contact" asp-controller="Home">Contact</a></li>
+                            <li><a asp-action="aboutus" asp-controller="Home">About us</a></li>
+                            <li><a asp-action="feedback" asp-controller="feedback">FeedBack</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="cart-container">
+                    <div class="icon-cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <div class="btn-Login">
+                        <div class="icon-user">
+                            <i class="fa-solid fa-user"></i>
+                                          @account.Username
+                        </div>
+                        <div class="user-avatar">
+                            <li class="menu">
+                                <ul class="subnav-profile">
+                                    <li><a asp-action="Profile" asp-controller="Account">Profile</a> </li>
+                                    <li><a href="#">History Order</a></li>
+                                    <li><a href="#">My FeedBack</a></li>
+                                    <li><a href="#">Change Password</a> </li>
+                                    <li><a asp-action="Logout" asp-controller="Auth">Logout</a></li>
+                                </ul>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+    }
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer--container">
+        <div class="footer--item">
+            <div class="logo">
+                <img src="~/img/Logo.png" alt="logo hinh anh" />
+            </div>
+            <div class="footer--introduction">
+                <p>
+                    We are committed to providing customers with the best quality
+                    products from famous and popular brands on the market.
+                </p>
+            </div>
+            <div class="icon">
+                <div class="icon--menu">
+                    <i class="fa-brands fa-facebook"></i>
+                </div>
+                <div class="icon--menu">
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+                <div class="icon--menu">
+                    <i class="fa-brands fa-twitter"></i>
+                </div>
+                <div class="icon--menu">
+                    <i class="fa-brands fa-google-plus"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer--item1">
+            <div class="shadow--box">
+                <p>Office</p>
+            </div>
+            <div class="footer--address">
+                <p>
+                    2P7M+XV8, Nguyễn Văn Cừ Nối Dài, An Bình, Ninh Kiều, Cần Thơ,
+                    Vietnam
+                </p>
+            </div>
+        </div>
+        <div class="footer--item2">
+            <div class="shadow--box">
+                <p>Links</p>
+                <div class="footer--menu">
+                    <div class="links">
+                        <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+                    </div>
+                    <div class="links">
+                        <li><a asp-action="Contact" asp-controller="Home">Contact</a></li>
+                    </div>
+                    <div class="links">
+                        <li><a asp-action="aboutus" asp-controller="Home">About Us</a></li>
+                    </div>
+                    <div class="links">
+                        <li><a asp-action="feedback" asp-controller="feedback">Feedback</a></li>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer--item">
+            <div class="shadow--box">
+                <p>Newselecter</p>
+                <div class="email">
+                    <input type="text" placeholder="Email..." />
+                    <button>Subcribe</button>
+                </div>
+                <div class="intro">
+                    <p>
+                        We are the ideal destination for those who are passionate about
+                        fashion and especially those who like shoes.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="white-circle">
+            <img src="your-image.jpg" alt="" />
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

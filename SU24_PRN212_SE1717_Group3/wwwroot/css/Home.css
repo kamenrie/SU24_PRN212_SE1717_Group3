@@ -1,0 +1,163 @@
+﻿body {
+    background-color: aliceblue;
+}
+
+img {
+    width: 100%;
+}
+
+
+.banner--background {
+    width: 100%;
+    padding: 1% 0;
+    & img
+
+{
+    width: 100%;
+    aspect-ratio: 2.55/1;
+    object-fit: cover;
+}
+
+}
+
+.feature--banner {
+    display: flex;
+    justify-content: space-between;
+    background-color: #C89A9A;
+    margin: 1% 10%;
+    padding: 2% 0;
+    & .feature--banner--feature
+
+{
+    width: calc(100%/3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & i
+
+{
+    width: 40%;
+    font-size: 3rem;
+    text-align: center;
+}
+
+& .feature--banner--feature--content {
+    width: 60%;
+    font-size: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    & p
+{
+    margin: 5% 0;
+}
+
+}
+}
+}
+
+.hot--product {
+    text-align: center;
+}
+
+.product--title {
+    color: #BB8383;
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Segoe UI';
+    letter-spacing: 3px;
+}
+
+.product--top {
+    display: flex;
+}
+
+.product--banner {
+    position: relative;
+}
+
+.Product--image {
+    width: 90%;
+    padding-left: 5%;
+    & img
+
+{
+    width: 100%;
+}
+}
+
+.category {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: white;
+    top: 5%;
+    & p
+
+{
+    width: 100%;
+    font-size: 1.5rem;
+    filter: drop-shadow(black 0rem 0rem 5px);
+}
+
+}
+
+.product--name {
+    text-align: center;
+}
+
+.product--price {
+    display: flex;
+    justify-content: space-around;
+}
+
+.view {
+    text-align: center;
+    & button
+{
+    background-color: #F86969;
+    padding: 4%;
+    width: 65%;
+    border: none;
+    cursor: pointer;
+}
+
+& button:hover {
+    transition: 0.2s;
+    background-color: #ac4e4e;
+    color: white;
+}
+
+}
+
+.price--old {
+    text-decoration: line-through;
+    color: #8A8787;
+}
+
+.button--loadmore {
+    margin: 2% 0;
+    padding: 1%;
+    text-align: center;
+    border: none;
+    border-radius: 15px;
+    background: #ac4e4e;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: 0.2s;
+    &:hover
+
+{
+    transform: scale(1.2);
+}
+
+}
+
+.Maketting {
+    display: flex;
+    & img
+
+{
+    width: 50%;
+}
+}

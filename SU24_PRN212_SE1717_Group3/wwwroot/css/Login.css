@@ -1,0 +1,270 @@
+﻿
+.btn {
+    margin: 10%;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.btn-hover {
+    width: 50%;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+    .btn-hover:hover {
+        background-position: 100% 0;
+        -moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+        letter-spacing: 2px;
+        transform: scale(1.02);
+    }
+
+    .btn-hover:focus {
+        outline: none;
+    }
+
+    .btn-hover.color-6 {
+        background-image: linear-gradient(to right, #009245, #FCEE21, #00A8C5, #D9E021);
+        box-shadow: 0 4px 15px 0 rgba(83, 176, 57, 0.75);
+    }
+
+.login-container {
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+    background: url(../img/bkg.jpg);
+    background-attachment: local;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.Wrapper {
+    width: 40%;
+    position: absolute;
+    margin: 0 auto;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3%;
+    height: fit-content;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(100px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    text-align: center;
+}
+
+.from-box-login {
+    width: 100%;
+    & h2
+
+{
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+}
+
+}
+
+
+.input-box {
+    position: relative;
+    width: 100%;
+    margin: 5% 0;
+    text-align: left;
+    & span
+
+{
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    display: inline-block;
+}
+
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+    transition: .25s linear;
+    pointer-events: none;
+}
+
+
+.input-box input {
+    width: 89%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #0FF;
+    font-weight: 600;
+    padding: 4% 0 0 1%;
+}
+
+    .input-box input:focus,
+    .input-box input:valid {
+        &~label
+
+{
+    top: -5px;
+    color: #0FF;
+}
+
+& ~ i {
+    color: #0FF;
+}
+
+& ~ span {
+    background: #0FF;
+}
+
+}
+
+.input-box i {
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: #fff;
+    line-height: 57px;
+}
+
+.forgot {
+    font-size: 1.25rem;
+    text-align: end;
+    margin: 5% 0;
+    & a
+
+{
+    color: #ccc;
+    text-decoration: none;
+}
+
+}
+
+.login-register {
+    font-size: 1.5rem;
+    & p
+
+{
+    color: #fff;
+}
+
+& a {
+    text-decoration: none;
+    color: #F0F;
+    &:hover
+
+{
+    border-bottom: #0FF solid 2px;
+}
+
+}
+}
+
+
+.Login-with-google {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+    border: 1px solid #000;
+    background: #fff;
+    font-size: 1.25rem;
+    cursor: pointer;
+    & i
+
+{
+    border-radius: 0;
+    font-size: 2rem;
+    color: #fff;
+    background: #000;
+    width: 20%;
+    padding: 3% 0;
+}
+
+& p {
+    margin: 0;
+    width: 80%;
+}
+
+&:hover {
+    background: #f99;
+    & i
+
+{
+    background: #F00;
+}
+
+}
+}
+
+
+/* .Wrapper .from-box-login{
+    /* display: none; */
+
+/* }
+
+.Wrapper .from-box-register{
+    position: absolute  ;
+    transform: rotateX(400px);
+
+} */
+
+.from-box-register {
+    display: none;
+    width: 100%;
+    & h2
+
+{
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+}
+
+}
+
+.back {
+    text-align: justify;
+    cursor: pointer;
+    & i
+
+{
+    font-size: 2.5rem;
+}
+
+}
+
+.back i:active {
+    color: rgb(164, 162, 162);
+    transform: scale(0.9);
+}

@@ -1,0 +1,89 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<link href="~/css/feedback.css" rel="stylesheet" />
+<div class="feedback">
+    <div class="feedback-container">
+        <div class="feedback-icon">
+            <i class="fa-solid fa-face-laugh-squint"></i>
+        </div>
+        <div class="feedback-icon">
+            <i class="fa-solid fa-face-laugh-squint"></i>
+        </div>
+        <div class="feedback-icon">
+            <i class="fa-solid fa-face-laugh-squint"></i>
+        </div>
+        <div class="feedback-icon">
+            <i class="fa-solid fa-face-laugh-squint"></i>
+        </div>
+        <div class="feedback-icon">
+            <i class="fa-solid fa-face-laugh-squint"></i>
+        </div>
+    </div>
+    <div class="feedback-content">
+        <p>Please tell your problem</p>
+        <p>We will try to be perfect</p>
+    </div>
+    <div class="feedback-input">
+        <div class="ava-user">
+            <img src="thay.jpg" alt="" />
+        </div>
+        <form asp-action="feedback" asp-controller="feedback" class="feedback-input-content" method="post">
+            <textarea name="feedback-input-content-comment"
+                      id="feedback-comment"
+                      contenteditable="true"
+                      placeholder="Enter your feedback..."
+                      oninput="auto_grow(this)"></textarea>
+            <div class="group-of-button">
+                <button class="cancel">Cancel</button>
+                <button class="send">Send</button>
+            </div>
+        </form>
+    </div>
+    <div class="feedback-hihi">
+        <div class="feedback-user-ava">
+            <img src="thay.jpg" alt="" />
+        </div>
+        <div class="feedback-user-content">
+            <div class="feedback-user-content-header">
+                <div class="feedback-user-content-info">
+                    <div class="feedback-user-name">Dullahan</div>
+
+                    <span id="time-1"></span><span id="date-1"></span>
+                </div>
+            </div>
+
+            <p class="feedback-comment">Chủ shop quá đẹp trai.</p>
+            <div class="feedback-admin-content">
+                <div class="feedback-admin-content-info">
+                    <div class="feedback-user-name">Atrox</div>
+
+                    <span id="time-1">00:00:00</span>
+                    <span id="date-1">13/12/34</span>
+                </div>
+                <div class="admin-reponse">Very handsome is my name</div>
+            </div>
+        </div>
+    </div>
+    <div class="feedback-hihi">
+        <div class="feedback-user-ava">
+            <img src="OIP.jpg" />
+        </div>
+        <div class="feedback-user-content">
+            <div class="feedback-user-content-header">
+                <div class="feedback-user-content-info">
+                    <div class="feedback-user-name">liu bei</div>
+                    <i class="fa-solid fa-circle"></i>
+                    <span id="time-2"></span><span id="date-2"></span>
+                </div>
+            </div>
+
+            <p class="feedback-comment">very good</p>
+        </div>
+    </div>
+</div>
+
+

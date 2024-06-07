@@ -1,0 +1,331 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: white;
+    margin: 0;
+}
+.header--container {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+}
+
+.logo {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .logo img {
+        width: 50%;
+        border-radius: 50%;
+    }
+
+.header--menu--container {
+    width: 55%;
+    padding: 2% 0;
+}
+
+.navbar {
+    margin-top: 5%;
+}
+
+    .navbar .navbar--list {
+        list-style-type: none;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0;
+    }
+
+        .navbar .navbar--list > li {
+            width: 15%;
+            text-align: center;
+            display: inline-block;
+            padding: 0.5% 0;
+        }
+
+            .navbar .navbar--list > li a {
+                text-decoration: none;
+                color: #fff;
+                font-size: 1.25rem;
+            }
+
+                .navbar .navbar--list > li a:hover {
+                    color: darkgrey;
+                }
+
+        .navbar .navbar--list li.menu {
+            background: #fff;
+            font-size: 150%;
+            line-height: 40px;
+            width: 10%;
+        }
+
+.search input {
+    width: 100%;
+    border: 10px;
+    border-radius: 8px;
+    padding: 2%;
+}
+
+.cart-container {
+    width: 24%;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+    .cart-container .btn-Login {
+        width: 60%;
+    }
+
+        .cart-container .btn-Login button {
+            width: 70%;
+            border-radius: 15px;
+            padding: 5% 0%;
+            cursor: pointer;
+        }
+
+            .cart-container .btn-Login button:hover {
+                background-color: darkgray;
+            }
+
+    .cart-container .icon-cart {
+        width: 30%;
+        color: #fff;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+        .cart-container .icon-cart i:hover {
+            color: darkgray;
+        }
+
+.user-avatar {
+    width: 30%;
+}
+
+    .user-avatar .menu img {
+        width: 100%;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+        clip-path: circle(50%);
+    }
+
+    .user-avatar li.menu {
+        list-style-type: none;
+    }
+
+.btn-Login:hover .subnav-profile {
+    display: block;
+}
+.icon-user{
+    display:flex;
+    padding:10% 5%;
+    font-size: 2rem;
+    color:black;
+    background:white;
+    text-align:center;
+    align-content:center;
+    justify-content: space-between;
+    border-radius: 15px;
+}
+.icon-user i{
+    font-size:2.5rem;
+}
+.subnav-profile {
+    position: absolute;
+    margin-top: 1%;
+    background: #fff;
+    list-style-type: none;
+    cursor: pointer;
+    padding: 0 2%;
+    right: 0;
+}
+
+    .subnav-profile li {
+        position: relative;
+        text-align: left;
+        margin: 5%;
+        font-size: 1.75rem;
+        width: 100%;
+    }
+
+        .subnav-profile li a {
+            text-decoration: none;
+            color: darkgray;
+        }
+
+            .subnav-profile li a:hover {
+                color: #000;
+            }
+
+.menu {
+    cursor: pointer;
+}
+
+    .menu .subnav {
+        position: absolute;
+        background: #fff;
+        list-style-type: none;
+        cursor: pointer;
+        padding: 0 3%;
+    }
+
+        .menu .subnav li {
+            position: relative;
+            text-align: left;
+        }
+
+            .menu .subnav li a:hover {
+                color: #000;
+            }
+
+            .menu .subnav li a {
+                color: darkgray;
+            }
+
+.footer--container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: rgb(33, 32, 32);
+    padding: 10px;
+    gap: 10px;
+    width: 100%;
+    z-index: 1000;
+}
+
+.footer--item,
+.footer--item1,
+.footer--item2 {
+    flex: 1 1 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+}
+
+footer .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+    footer .logo img {
+        width: 50%;
+        border-radius: 50%;
+    }
+
+.footer--introduction {
+    margin-top: 10px;
+}
+
+    .footer--introduction p {
+        font-size: 12px;
+        color: white;
+    }
+
+.icon {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 10px;
+}
+
+.icon--menu i {
+    color: white;
+    font-size: 16px;
+}
+
+.footer--address p {
+    color: white;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.shadow--box p {
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+}
+
+.footer--menu {
+    list-style-type: none;
+    padding: 0;
+}
+
+    .footer--menu a {
+        text-decoration: none;
+        font-size: 12px;
+        color: white;
+    }
+
+        .footer--menu a:hover {
+            color: silver;
+        }
+
+.email {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+    .email input {
+        padding: 5px;
+        border-radius: 5px;
+        border: none;
+        font-size: 12px;
+    }
+
+    .email button {
+        padding: 5px;
+        border-radius: 5px;
+        border: none;
+        background-color: #ddd;
+        font-size: 12px;
+    }
+
+        .email button:hover {
+            cursor: pointer;
+            background-color: beige;
+        }
+
+.intro {
+    margin-top: 10px;
+    color: white;
+    font-size: 12px;
+}
+
+.social-media {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+    .social-media a i {
+        color: white;
+        font-size: 16px;
+    }
+
+.white-circle img {
+    display: block;
+    margin: 10px auto;
+    width: 40px;
+}

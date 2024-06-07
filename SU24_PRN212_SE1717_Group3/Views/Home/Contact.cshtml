@@ -1,0 +1,101 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<link href="~/css/Contact.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="title">
+        <h3 class="title-header">
+            <strong>Ready To Get Started?</strong>
+        </h3>
+        <h4 class="title-content">
+            Your email address will not be published. Required fields are marked.
+        </h4>
+    </div>
+    <div class="form-container">
+        <form asp-action="Contact" asp-controller="Home" method="POST" enctype="multipart/form-data" class="form-input" data-form-title="Form Name">
+            <input type="hidden" name="email" data-form-email="true" value="" />
+            <div class="">
+                <div hidden="hidden" data-form-alert="" class="">
+                    Thanks for filling out the form!
+                </div>
+                <div hidden="hidden" data-form-alert-danger="" class="">
+                    Oops...! Some problem!
+                </div>
+            </div>
+            <div class="">
+                <div class="">
+                    <input type="text" name="name" placeholder="Name" data-form-field="name" class="" value=""
+                           id="name-form02-0" />
+                </div>
+                <div class="">
+                    <input type="email" name="email" placeholder="E-mail" data-form-field="email" class="" value=""
+                           id="email-form02-0" />
+                </div>
+                <div class="">
+                    <input type="tel" name="phone" placeholder="Phone" data-form-field="phone" class="" value=""
+                           id="phone-form02-0" />
+                </div>
+                <div class="">
+                    <textarea name="textarea" placeholder="Message" data-form-field="textarea" class="form-control"
+                              id=""></textarea>
+                </div>
+                <div class="image-input" data-for="image">
+                    <label class="file">
+                        <input type="file" id="file" aria-label="File browser example" onchange="updateImagePreview(this)">
+                        <span class="file-custom"></span>
+                    </label>
+                </div>
+                <img alt="Selected Image" id="image-preview" style="display: none" />
+                <div class="form-button">
+                    <button type="submit" class="" onclick="submitForm()">
+                        Send
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="contact-info">
+
+    <div class="contact-info-content">
+        <h5 class="contact-info-content-title">
+            <strong>
+                Please contact us if you have a problem and we will note it
+                and fix it
+            </strong>
+        </h5>
+
+        <div class="contact-info-content-text">
+            <i class="fa-solid fa-location-pin"></i>
+            Phone:
+            <a href="#" class="text-primary">0 (800) 123 45 67</a>
+        </div>
+        <div class="contact-info-content-text">
+            <i class="fa-solid fa-square-envelope"></i>
+            Email:
+            <a href="#" class="">Quinhce171689@fpt.edu.vn</a>
+        </div>
+        <div class="contact-info-content-text">
+            <i class="fa-solid fa-phone"></i>
+            Address: 600 Nguyễn Văn Cừ Nối Dài, An Bình, Ninh Kiều, Cần
+            Thơ, Vietnam
+        </div>
+
+        <div class="contact-info-content-text">
+            <i class="fa-solid fa-house-circle-check"></i>
+            Working hours: 8:00AM - 8:00PM
+        </div>
+
+    </div>
+
+    <div class="google-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.053354256999!2d105.72985667574369!3d10.012451790093634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0890033b0a4d5%3A0x5360c94ba9e67842!2zNjAwIE5ndXnhu4VuIFbEg24gQ-G7qyBO4buRaSBEw6BpLCBBbiBCw6xuaCwgTmluaCBLaeG7gXUsIEPhuqduIFRoxqEgOTAwMDAwLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1717412531638!5m2!1sen!2s"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+
+<script src="~/js/Contact.js"></script>

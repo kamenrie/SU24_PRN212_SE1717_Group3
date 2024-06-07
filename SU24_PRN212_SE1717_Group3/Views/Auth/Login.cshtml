@@ -1,0 +1,96 @@
+﻿@model SU24_PRN212_SE1717_Group3.Models.Account
+@{
+}
+
+<link href="~/css/Login.css" rel="stylesheet" />
+<img class="source-image" src="Logo.png" alt="" hidden>
+<div class="login-container">
+    <div class="Wrapper">
+        <div id="login-box" class="from-box-login">
+            <form asp-action="Login" asp-controller="Auth" class="login">
+                <h2>Login With Your Account</h2>
+                <p style="color:red;"> @TempData["AuthError"]</p>
+                <div class="input-box">
+                    <input asp-for="Email" name="email" type="text" required>
+                    <label>Email</label>
+                    <i class="fa-solid fa-envelope icon"></i>
+                    <span></span>
+                </div>
+                <div class="input-box">
+                    <input asp-for="Password"  name="pass" type="password" required>
+                    <label>Password</label>
+                    <i class="fa-solid fa-lock"></i>
+                    <span></span>
+                </div>
+                <div class="forgot">
+                    <a id="forgot-link" href="#">Forgot password ?</a>
+                </div>
+                <button type="submit" class="btn btn-hover color-6">Login</button>
+                <div class="login-register">
+                    <p>No Account? <a href="#" class="switch-to-register">Please create an account</a></p>
+                </div>
+
+                <div class="Login-with-google">
+                    <i class="fa-brands fa-google-plus-g"></i>
+                    <p>Login with google</p>
+                </div>
+            </form>
+        </div>
+
+        <div id="register-box" class="from-box-register">
+            <form asp-action="Register" asp-controller="Auth" class="login">
+                <h2>Register With Your Account</h2>
+                <div class="input-box">
+                    <input asp-for="Email" type="text" required>
+                    <i class="fa-solid fa-user"></i>
+                    <label>User Name</label>
+                    <span></span>
+
+                </div>
+                <div class="input-box">
+                    <input asp-for="Username" type="text" required>
+                    <i class="fa-solid fa-lock"></i>
+                    <label>Name</label>
+                    <span></span>
+
+                </div>
+                <div class="input-box">
+                    <input asp-for="Password" type="password" required>
+                    <i class="fa-solid fa-lock"></i>
+                    <label>Password</label>
+                    <span></span>
+                </div>
+                <button type="submit" class="btn btn-hover color-6">Register </button>
+                <div class="login-register">
+                    <p>Already have an account? <a href="#" class="switch-to-login">Login here</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div id="forgot-box" class="forgot-box" style="display: none;">
+            <form action="#" class="login">
+                <div id="back-to-login-2" class="back"><i class="fa-solid fa-circle-left"></i></div>
+                <h2>Forgot Pass Word ?</h2>
+
+                <div class="input-box">
+                    <input type="text" required>
+                    <i class="fa-solid fa-envelope"></i>
+                    <label>Email</label>
+                    <span></span>
+
+                </div>
+                <button type="submit" class="btn btn-hover color-6">Sumit</button>
+                <div class="login-register">
+                    <p>
+                        Please enter your email address in
+                        the box above so we can send you the OTP (One-Time Password).
+                        This code will be used to verify your account.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/Login.js"></script>

@@ -1,0 +1,107 @@
+﻿.main__container {
+    padding: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+    .main__container #fileInput {
+        display: none;
+    }
+
+    .main__container .profile__avatar {
+        text-align: center;
+        width: 40%;
+        padding-top: 5%;
+    }
+
+        .main__container .profile__avatar img {
+            border-radius: 50%;
+            min-width: 50%;
+            max-width: 50%;
+        }
+
+        .main__container .profile__avatar .profile__avatar__camera {
+            position: relative;
+            right: 17.5%;
+            width: 10%;
+            display: inline-block;
+            font-size: calc(5px + 2vw);
+            text-align: center;
+            padding: 1%;
+            border-radius: 50%;
+            background: #d9d9d9;
+            border: 0.1px solid darkcyan;
+            cursor: pointer;
+            &:hover
+
+{
+    background: linear-gradient( 90deg, rgba(255, 248, 40, 0.7), rgb(140, 255, 45, 0.7) );
+    color: darkcyan;
+}
+
+}
+
+/* Form */
+.main__container .profile__information {
+    background: #ffe1e1;
+    width: 60%;
+    padding-top: 1.5%;
+    border-radius: 12px;
+}
+
+    .main__container .profile__information label {
+        margin: 5%;
+        font-size: calc(10px + 1vw);
+    }
+
+    .main__container .profile__information input {
+        border-radius: 8px;
+        border: 1px solid #000;
+        background: #fff;
+        font-size: calc(5px + 0.8vw);
+        padding: 2.5%;
+        width: calc(75% - 3px);
+        margin: 5% 10%;
+        &#email
+
+{
+    background: #d9d9d9;
+}
+
+}
+
+.main__container .profile__information button {
+    font-family: "Kelly Slab";
+    font-size: calc(10px + 2vw);
+    width: 100%;
+    border-radius: 0px 0px 12px 12px;
+    background: linear-gradient( 150deg, rgba(242, 121, 146, 0.5), rgb(169, 92, 240) );
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+    .main__container .profile__information button:hover {
+        background: linear-gradient( 90deg, rgb(99, 175, 229), rgba(242, 121, 146, 0.5) );
+        color: #fff;
+    }
+
+@media (max-width: 600px) {
+    .main__container {
+        display: block;
+    }
+
+        .main__container .profile__avatar {
+            width: 100%;
+            margin-bottom: 10%;
+            padding-left: 5%;
+        }
+
+            .main__container .profile__avatar .profile__avatar__camera {
+                font-size: calc(2px + 5vw);
+            }
+
+        .main__container .profile__information {
+            width: 100%;
+        }
+}

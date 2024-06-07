@@ -1,0 +1,160 @@
+﻿.cart-topic {
+    text-align: center;
+    font-size: 30px;
+}
+
+.navbar {
+    display: flex;
+}
+
+.product-image {
+    width: 12%;
+    & img
+
+{
+    width: 100%;
+}
+
+}
+
+table {
+    border-spacing: 0;
+}
+
+.table {
+    background-color: #F95F5F;
+    text-align: center;
+    & th
+
+{
+    padding: 2%;
+    width: 20%;
+}
+
+}
+
+td {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.category {
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: "Roboto";
+}
+
+.inventory {
+    & div
+
+{
+    display: flex;
+    justify-content: space-around;
+    background-color: transparent;
+}
+
+& input {
+    width: 20%;
+    border: none;
+    text-align: center;
+    background-color: #D9D9D9;
+    &:focus-visible
+
+{
+    outline: 0;
+}
+
+}
+
+& input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+
+& button {
+    font-size: 1.5rem;
+    border: none;
+    background-color: #D9D9D9;
+}
+
+}
+
+.ground-of-button {
+    display: flex;
+    & button
+
+{
+    border: none;
+}
+
+}
+
+.product-button {
+}
+
+.button-edit {
+    font-size: 1.5rem;
+    width: 50%;
+    background-color: #82CD5F;
+}
+
+.button-delete {
+    font-size: 1.5rem;
+    width: 50%;
+    background-color: #EA4242;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search {
+    width: 80%;
+    & input
+
+{
+    padding: 1% 0% 1% 1%;
+    margin: 0.25%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+}
+
+.add {
+    width: 17%;
+    & button
+
+{
+    background-color: #F7F160;
+    width: 100%;
+    padding: 5%;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+}
+
+.add button:hover {
+    background-color: #9e8d2f;
+}
+
+.pagination {
+    text-align: center;
+    & button
+
+{
+    padding: 0.5% 1%;
+    cursor: pointer;
+}
+
+}
+
+.pagination button:hover {
+    background-color: #6d6c6b;
+}
