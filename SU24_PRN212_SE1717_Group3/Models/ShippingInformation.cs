@@ -17,7 +17,7 @@ namespace SU24_PRN212_SE1717_Group3.Models
 
         public DateTime? DeliveryDate { get; set; }
 
-        [ForeignKey("DeleveryId")]
-        public Delivery ? Delivery { get; set; }
+        [ForeignKey("DeliveryId")]
+        public Delivery? Delivery { get; set; }
     }
 }

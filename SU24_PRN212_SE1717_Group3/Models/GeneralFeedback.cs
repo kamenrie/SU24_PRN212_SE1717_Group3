@@ -9,7 +9,7 @@ namespace SU24_PRN212_SE1717_Group3.Models
         [Key]
         public int Id { get; set; }
 
-        public string ? FeedbackText { get; set; }
+        public string? FeedbackText { get; set; }
 
         public string? ResponseText { get; set; }
 

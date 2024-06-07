@@ -9,15 +9,15 @@ namespace SU24_PRN212_SE1717_Group3.Models
         [Key]
         public int Id { get; set; }
         
-        public string ? Name { get; set; }
+        public string? Name { get; set; }
 
-        public string ? Description { get; set; }
+        public string? Description { get; set; }
 
-        public string? Precent {  get; set; }
+        public string? Percent {  get; set; }
 
-        public Boolean ? Validity { get; set; }
+        public Boolean? Validity { get; set; }
 
-        public int  ? Quantity { get; set; }
+        public int? Quantity { get; set; }
 
 
     }

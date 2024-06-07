@@ -14,13 +14,8 @@ namespace SU24_PRN212_SE1717_Group3.Models
 
         public string? Phone { get; set; }
 
-        public byte[]? Image { get; set; }
-
         public string? Address { get; set; }
 
-        public Profile()
-        {
-
-        }
+        public byte[]? Image { get; set; }
     }
 }

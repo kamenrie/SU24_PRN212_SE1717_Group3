@@ -11,8 +11,10 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
         //public async IActionResult ListProduct(Role ro)
         //{
         //    var shop = await dbContext.account.Include(x => x.role).FirstOrDefaultAsync(x => x.role = ro.Roleid);
-        //    return View();
+          //  return View();
         //}
+
+       
 
 
     }

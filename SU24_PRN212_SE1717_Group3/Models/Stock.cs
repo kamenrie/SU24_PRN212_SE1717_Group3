@@ -11,11 +11,9 @@ namespace SU24_PRN212_SE1717_Group3.Models
 
         public int? Quantity { get; set; }
 
-        public DateTime? DateNow { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
-        [ForeignKey("Orderid")]
-
-        public Order? Drder { get; set; }
+        public DateTime? LastEditedDate { get; set; }
 
     }
 }
