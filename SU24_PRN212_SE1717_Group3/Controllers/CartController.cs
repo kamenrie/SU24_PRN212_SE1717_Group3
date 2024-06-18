@@ -8,5 +8,13 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
         {
             return View();
         }
+        public IActionResult Order()
+        {
+            return View();
+        }
+        public IActionResult Cart()
+        {
+            return View();
+        }
     }
 }
