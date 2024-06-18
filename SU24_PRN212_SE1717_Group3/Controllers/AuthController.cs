@@ -20,8 +20,6 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
         public async Task<IActionResult> Login( string email ,string pass)
         {
             var acc = await authDAO.Login(email, pass); 
-
-            
             
             if (acc == null)
             {
@@ -29,8 +27,14 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
                 return RedirectToAction("Login", "Auth");
             }
             HttpContext.Session.SetInt32("accountid", acc.Id);
-            return RedirectToAction("Index", "Home");
-        }
+            if (acc.Role.Name == "User")
+            {
+				return RedirectToAction("Index", "Home");
+			} else
+            {
+				return RedirectToAction("Index", "Home");
+			}
+		}
 
         [HttpPost]
         public async Task<IActionResult> Register(Account acc) 
