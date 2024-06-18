@@ -3,21 +3,24 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SU24_PRN212_SE1717_Group3.DataAccess;
 
 #nullable disable
 
-namespace SU24_PRN212_SE1717_Group3.Migrations
+namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240612080608_ligit")]
+    partial class ligit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -67,9 +70,6 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -80,14 +80,14 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
 
             modelBuilder.Entity("SU24_PRN212_SE1717_Group3.Models.Delivery", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<int?>("Day")
+                        .HasColumnType("int");
 
                     b.Property<double?>("Price")
                         .HasColumnType("float");
@@ -95,7 +95,7 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Delivery");
                 });
@@ -114,8 +114,8 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Percent")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("Percent")
+                        .HasColumnType("float");
 
                     b.Property<int?>("Quantity")
                         .HasColumnType("int");
@@ -252,14 +252,17 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool?>("Availability")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -267,10 +270,10 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                     b.Property<double?>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int?>("Quantity")
+                    b.Property<int?>("ShopId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ShopId")
+                    b.Property<int?>("StockId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -278,6 +281,8 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("ShopId");
+
+                    b.HasIndex("StockId");
 
                     b.ToTable("Product");
                 });
@@ -378,7 +383,6 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -537,9 +541,15 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                         .WithMany()
                         .HasForeignKey("ShopId");
 
+                    b.HasOne("SU24_PRN212_SE1717_Group3.Models.Stock", "Stock")
+                        .WithMany()
+                        .HasForeignKey("StockId");
+
                     b.Navigation("Category");
 
                     b.Navigation("Shop");
+
+                    b.Navigation("Stock");
                 });
 
             modelBuilder.Entity("SU24_PRN212_SE1717_Group3.Models.ShippingInformation", b =>

@@ -1,0 +1,86 @@
+﻿@model List<SU24_PRN212_SE1717_Group3.Models.Product>
+
+@{
+    ViewData["Title"] = "List Product";
+    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+    int CurrentPage = Convert.ToInt32(ViewData["CurrentPage"]);
+    int EndPage = Convert.ToInt32(ViewData["EndPage"]);
+    int TotalEntry = Convert.ToInt32(ViewData["TotalEntry"]);
+}
+
+<link href="~/css/ListProduct.css" rel="stylesheet" />
+
+<div class="list--product">
+    <div class="cart-topic">
+        <h2>List Product</h2>
+    </div>
+    <div class="navbar">
+        <div class="search">
+            <form method="get" asp-controller="ProductManager" asp-action="Search">
+                <input type="text" placeholder="Search...">
+            </form>
+        
+        </div>
+        <div class="add">
+            <button onclick="window.location.href='/ProductManager/Add'">Add</button>
+        </div>
+    </div>
+    <form asp-controller="ProductManager" asp-action="Index" class="table-form-container">
+        <table class="table-product">
+            <tr class="table-header">
+                <th>Product</th>
+                <th></th>
+                <th>Category</th>
+                <th>Inventory</th>
+                <th></th>
+
+                <th class="edit"></th>
+            </tr>
+            @foreach(var product in Model){
+               
+                <tr>
+                   
+                <td class="product-image">
+                        <img src="data:image/*;base64,@Convert.ToBase64String(product.Image)" alt="">
+                </td>
+                <td class="product-information">
+                    <p>@product.Name</p>
+                    <p>@product.Price$</p>
+                </td>
+                <td class="category">
+                    @product.Category.Name
+                </td>
+                    <td class="product-inventory">
+                    <p>@product.Stock.Quantity</p>
+                </td>
+                <td class="product-button">
+                    <div class="ground-of-button">
+                            <button type="button" class="button-edit" onclick="window.location.href='/ProductManager/Update?Id=@product.Id'">
+                            Update
+                        </button>
+                        <button type="button" class="button-delete" onclick="window.location.href='/ProductManager/Delete?Id=@product.Id'">
+                            Delete
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            }
+            
+           </table>
+
+        <div class="pagination">
+            <button class="@(CurrentPage==1?"disabled":"")"><i class="fa-solid fa-chevron-left"></i> </button>
+            @for(int i =1;i <=EndPage; i++)
+            {
+                <button class="@(CurrentPage==i?"active":"")">@i</button>
+            }
+              
+         
+            <button class="@(CurrentPage==EndPage?"disabled":"")"><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+    </form>
+</div>
+
+
+
+

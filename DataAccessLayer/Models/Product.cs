@@ -16,10 +16,10 @@ namespace SU24_PRN212_SE1717_Group3.Models
 
         public double? Price { get; set; }
 
-        public DateTime? CreatedDate { get; set; }
+        public byte[]? Image { get; set; }
 
-        public int? Quantity { get; set; }
-      
+        public bool? Availability { get; set; }
+
         [ForeignKey("ShopId")]
 
         public Shop? Shop { get; set; }
@@ -28,6 +28,9 @@ namespace SU24_PRN212_SE1717_Group3.Models
         [ForeignKey("CategoryId")]
 
         public Category? Category { get; set; }
-        
+
+        [ForeignKey("StockId")]
+
+        public Stock? Stock { get; set; }
     }
 }

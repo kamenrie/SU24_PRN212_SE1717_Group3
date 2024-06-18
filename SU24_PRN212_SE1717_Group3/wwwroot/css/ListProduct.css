@@ -9,21 +9,23 @@
 
 .product-image {
     width: 12%;
-    & img
-
-{
-    width: 100%;
 }
 
+.product-image1 > img {
+    width: 100%;
 }
 
 table {
     border-spacing: 0;
+    width:100%;   
 }
 
-.table {
+
+
+.table-header {
     background-color: #F95F5F;
     text-align: center;
+    width: 100%;
     & th
 
 {
@@ -37,7 +39,15 @@ td {
     font-size: 1.5rem;
     text-align: center;
 }
+.product-image{
 
+    & img
+{
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    width: 100%;
+}
+}
 .category {
     font-size: 2rem;
     font-weight: bold;
@@ -88,21 +98,35 @@ input::-webkit-inner-spin-button {
 
 {
     border: none;
+    padding: 5% 0;
+    cursor: pointer;
+    &:hover
+
+{
+    filter: brightness(0.8);
 }
 
 }
+}
+.product-inventory p{
+    font-weight: bold;
+    font-family: cursive;
+    font-size:1.5rem;
+    text-align: center;
 
+}
 .product-button {
+    width: 100%;
 }
 
 .button-edit {
-    font-size: 1.5rem;
+    font-size: 1rem;
     width: 50%;
     background-color: #82CD5F;
 }
 
 .button-delete {
-    font-size: 1.5rem;
+    font-size: 1rem;
     width: 50%;
     background-color: #EA4242;
 }

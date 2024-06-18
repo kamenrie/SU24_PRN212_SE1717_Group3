@@ -13,9 +13,9 @@ namespace SU24_PRN212_SE1717_Group3.Models
 
         public string? Description { get; set; }
 
-        public string? Percent {  get; set; }
+        public double? Percent {  get; set; }
 
-        public Boolean? Validity { get; set; }
+        public bool? Validity { get; set; }
 
         public int? Quantity { get; set; }
 

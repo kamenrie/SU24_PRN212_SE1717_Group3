@@ -2,16 +2,25 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Segoe UI';
 }
 
 .container {
     display: flex;
+    background: #F0F0F0;
+    justify-content: flex-end;
+    height: max-content;
+    min-height: 100vh;
 }
 
 .container-left {
     width: 20%;
     height: 100vh;
     transition: width 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
     .container-left.active {
@@ -26,9 +35,8 @@
     .container-left.active .icon-wrapper {
         padding: 20% 0;
     }
-
         .container-left.active .icon-wrapper i {
-            font-size: 3.5rem;
+            font-size: 3rem;
             width: 100%;
         }
 
@@ -36,9 +44,17 @@
             display: none;
         }
 
+    .container-left.active .container-left-sidebar-logo img {
+        width: 100%;
+        border-radius: 0;
+        aspect-ratio: 1;
+    }
+
+    
+
 .container-left-sidebar {
     z-index: 2;
-    background-color: #f0f0f0;
+    background-color: #808080;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -46,19 +62,19 @@
     justify-content: flex-start;
 }
 
-img {
-    max-width: 60%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 10px;
-    border-radius: 50%;
-    overflow: hidden;
-}
+    .container-left-sidebar .container-left-sidebar-logo {
+        width: 100%;
+        text-align: center;
+    }
+
+        .container-left-sidebar .container-left-sidebar-logo img {
+            width: 100%;
+            aspect-ratio: 7/4;
+            object-fit: cover;
+        }
 
 .icon-wrapper {
     padding: 5% 10%;
-    margin-top: 5%;
     width: 100%;
     align-self: center;
     display: flex;
@@ -66,16 +82,23 @@ img {
     justify-content: space-between;
 }
 
+    .icon-wrapper:hover {
+        background: #999;
+        color: #CCC;
+        user-select: none;
+        cursor: pointer;
+    }
+
     .icon-wrapper i {
         font-size: 3rem;
-        width: 25%;
+        width: 20%;
     }
 
     .icon-wrapper span {
-        width: 75%;
-        font-size: 1.5rem;
+        width: 80%;
+        text-align: center;
+        font-size: 2rem;
         font-weight: 600;
-        font-family: "Roboto";
     }
 
 .fa-fw {
@@ -88,20 +111,21 @@ img {
 
 .button-left-side {
     border: none;
-    background: gray;
+    background: #9d9898;
     cursor: pointer;
     font-size: 2rem;
-    padding: 5% 0.5%;
+    padding: 20% 2%;
     position: absolute;
-    left: 21%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    left: 100%;
+    top: 45%;
+    transform: translate(0, -50%);
     clip-path: ellipse(150% 50% at -50% 50%);
     transition: 0.25s;
+    z-index: 1;
 }
 
 .container-left.active .button-left-side {
-    left: 11%;
+    padding: 30% 2%;
 }
 
 
@@ -109,22 +133,31 @@ img {
     transition: 0.25s;
 }
 
-.container-left .button-left-side i:hover {
-    transform: rotate(540deg);
-}
-
 .container-left.active .button-left-side i {
-    transform: rotate(-180deg);
+    transform: rotate(-540deg);
 }
-
-    .container-left.active .button-left-side i:hover {
-        transform: rotate(0deg);
-    }
 
 .container-right {
     width: 80%;
     transition: width 0.3s ease;
+    position: relative;
 }
+
+    .container-right .container-right-header {
+        background: #00F;
+        font-size: 4rem;
+        color: #FFF;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 1% 0;
+        font-weight: bold;
+    }
+
+    .container-right .container-right-body {
+        width: 100%;
+        margin: 2% 0;
+        padding: 0 10%;
+    }
 
 .container-left.active ~ .container-right {
     width: 90%;

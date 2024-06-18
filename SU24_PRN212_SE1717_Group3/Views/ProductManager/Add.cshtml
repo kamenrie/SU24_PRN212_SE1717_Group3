@@ -1,0 +1,76 @@
+﻿@model SU24_PRN212_SE1717_Group3.Models.Product
+
+
+
+
+@{
+    ViewData["Title"] = "Add Product";
+    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+}
+
+<link href="~/css/Addproduct.css" rel="stylesheet" />
+
+<div class="form__product__container">
+    <form asp-action="Add" asp-controller="ProductManager" method="post" class="form__data"
+          enctype="multipart/form-data">
+        <h2>ADD PRODUCT FORM</h2>
+        @* <div style="color: red"></div>
+        <div style="color: green; font-size: 15px"></div> *@
+        <div class="shop">
+            @foreach (var shop in TempData["Shop"] as List<Shop>)
+            {
+                <label>Shop @shop.Name</label>
+            }
+        </div>
+        <div class="form__input">
+            <label>Name</label>
+            <input type="text" asp-for="Name" placeholder="Product Name" required />
+        </div>
+        <div class="form__input">
+            <label>Image</label>
+            <div class="form__input__image" onclick="triggerFileInput()">
+                <button type="button">Choose File</button>
+                <p id="imageName"></p>
+            </div>
+            <input accept="image/*" type="file" asp-for="Image" name="img" id="imageInput"
+                   onchange="handleFileChange()" required oninvalid="alert('Please add image')" />
+           
+        </div>
+
+        <img id="ProductImage" src="">
+        <div class="form__input">
+            <label>Price</label>
+            <input type="text" asp-for="Price" placeholder="Product Price" pattern="\d+.?\d*"
+                   oninvalid="setCustomValidity('Price must be a positive demical number')"
+                   oninput="setCustomValidity('')" required />
+        </div>
+        <div class="form__input">
+            <label >Description</label>
+            <textarea asp-for="Description" cols="30" rows="10"
+                      placeholder="Product Description" required></textarea>
+        </div>
+        <div class="form__input">
+            <label>Quantity</label>
+            <input type="number" name="quan" min="1"  placeholder="Quantity" required />
+        </div>
+        <div class="form__input">
+            <label>Category</label>
+
+            <select name="categoryId" id="category" required>
+                <option value="">---------- Product Category ----------</option>
+                @foreach (var category in TempData["Category"] as List<Category>)
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            </select>
+        </div>
+       
+        <div class="form__button">
+            <button type="reset">Clear</button>
+            <button class="add" type="submit" >Add</button>
+        </div>
+    </form>
+  
+</div>
+
+<script src="~/js/Addproduct.js"></script>

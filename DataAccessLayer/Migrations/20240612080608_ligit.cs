@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SU24_PRN212_SE1717_Group3.Migrations
+namespace DataAccessLayer.Migrations
 {
     /// <inheritdoc />
     public partial class ligit : Migration
@@ -17,8 +17,7 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -29,15 +28,15 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                 name: "Delivery",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Day = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Delivery", x => x.ID);
+                    table.PrimaryKey("PK_Delivery", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,7 +47,7 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Percent = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Percent = table.Column<double>(type: "float", nullable: true),
                     Validity = table.Column<bool>(type: "bit", nullable: true),
                     Quantity = table.Column<int>(type: "int", nullable: true)
                 },
@@ -105,7 +104,7 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -159,7 +158,7 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                         name: "FK_ShippingInformation_Delivery_DeliveryId",
                         column: x => x.DeliveryId,
                         principalTable: "Delivery",
-                        principalColumn: "ID");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -204,10 +203,11 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Quantity = table.Column<int>(type: "int", nullable: true),
+                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Availability = table.Column<bool>(type: "bit", nullable: true),
                     ShopId = table.Column<int>(type: "int", nullable: true),
-                    CategoryId = table.Column<int>(type: "int", nullable: true)
+                    CategoryId = table.Column<int>(type: "int", nullable: true),
+                    StockId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -221,6 +221,11 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                         name: "FK_Product_Shop_ShopId",
                         column: x => x.ShopId,
                         principalTable: "Shop",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Product_Stock_StockId",
+                        column: x => x.StockId,
+                        principalTable: "Stock",
                         principalColumn: "Id");
                 });
 
@@ -409,6 +414,11 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                 column: "ShopId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Product_StockId",
+                table: "Product",
+                column: "StockId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ShippingInformation_DeliveryId",
                 table: "ShippingInformation",
                 column: "DeliveryId");
@@ -425,9 +435,6 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
 
             migrationBuilder.DropTable(
                 name: "OrderDetail");
-
-            migrationBuilder.DropTable(
-                name: "Stock");
 
             migrationBuilder.DropTable(
                 name: "Order");
@@ -452,6 +459,9 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
 
             migrationBuilder.DropTable(
                 name: "Category");
+
+            migrationBuilder.DropTable(
+                name: "Stock");
 
             migrationBuilder.DropTable(
                 name: "Profile");
