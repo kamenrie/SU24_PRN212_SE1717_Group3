@@ -51,17 +51,17 @@ namespace SU24_PRN212_SE1717_Group3.DAO
 
 		public int GetCountProduct()
 		{
-			return dbContext.Product.ToList().Count;
+			return dbContext.Product.ToList().Count();
 		}
 
 		public int GetCountProductBySearchName(string Name)
 		{
-			return dbContext.Product.Where(x => x.Name.Equals(Name)).ToList().Count;
+			return dbContext.Product.Where(x => x.Name.Contains(Name)).ToList().Count();
 		}
 
 		public int GetCountProductByCategoryName(string CategoryName)
 		{
-			return dbContext.Product.Include(x => x.Category).Where(x => x.Category.Name.Equals(CategoryName)).ToList().Count;
+			return dbContext.Product.Include(x => x.Category).Where(x => x.Category.Name.Equals(CategoryName)).ToList().Count();
 		}
 
 		public async Task AddProduct(Product pro, int quan, int categoryId, int shopId, IFormFile img)

@@ -16,6 +16,7 @@ namespace SU24_PRN212_SE1717_Group3.Controllers.Dashboard
 			int endpage = (int)Math.Ceiling(proDAO.GetCountProduct() / 6.0);
 			CurrentPage = CurrentPage < 1 ? 1 : CurrentPage > endpage ? endpage : CurrentPage;
 			var listProduct = await proDAO.GetAllProduct();
+			listProduct.Skip((CurrentPage - 1) * 6).Take(6).ToList();
 
 			ViewData["Access"] = "Index?";
 			ViewData["EndPage"] = endpage;
