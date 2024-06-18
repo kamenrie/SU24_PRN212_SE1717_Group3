@@ -3,15 +3,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SU24_PRN212_SE1717_Group3.Models
 {
-    [Table("Category")]
-    public class Category
+    [Table("Stock")]
+    public class Stock
     {
         [Key]
-
         public int Id { get; set; }
 
-        public string? Name { get; set; }
+        public int? Quantity { get; set; }
 
-        public string? Description { get; set; }
+        public DateTime? CreatedDate { get; set; }
+
+        public DateTime? LastEditedDate { get; set; }
+
+       
+
     }
 }

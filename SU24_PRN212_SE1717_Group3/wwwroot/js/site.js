@@ -12,9 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
     subnavsProfile.forEach(function (subnav) {
         subnav.style.display = 'none';
     });
-
-
-    var menus = document.querySelectorAll('.btn-Login');
+    var menus = document.querySelectorAll(".menu")
+    var menuLogin = document.querySelectorAll('.btn-Login');
 
     menus.forEach(function (menu) {
         menu.addEventListener('click', function () {
@@ -26,8 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-    menus.forEach(function (menu) {
-        menu.addEventListener('click', function () {
+    menuLogin.forEach(function (menuLogin) {
+        menuLogin.addEventListener('click', function () {
             var subnav = this.querySelector('.subnav-profile');
             if (subnav.style.display === 'block') {
                 subnav.style.display = 'none';

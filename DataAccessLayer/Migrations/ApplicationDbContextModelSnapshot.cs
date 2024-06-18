@@ -8,7 +8,7 @@ using SU24_PRN212_SE1717_Group3.DataAccess;
 
 #nullable disable
 
-namespace SU24_PRN212_SE1717_Group3.Migrations
+namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -17,7 +17,7 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -67,9 +67,6 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -80,14 +77,14 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
 
             modelBuilder.Entity("SU24_PRN212_SE1717_Group3.Models.Delivery", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<int?>("Day")
+                        .HasColumnType("int");
 
                     b.Property<double?>("Price")
                         .HasColumnType("float");
@@ -95,7 +92,7 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Delivery");
                 });
@@ -114,8 +111,8 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Precent")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("Percent")
+                        .HasColumnType("float");
 
                     b.Property<int?>("Quantity")
                         .HasColumnType("int");
@@ -163,15 +160,15 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
 
             modelBuilder.Entity("SU24_PRN212_SE1717_Group3.Models.MyDiscount", b =>
                 {
-                    b.Property<int?>("Discountid")
+                    b.Property<int?>("DiscountId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Accountid")
+                    b.Property<int?>("AccountId")
                         .HasColumnType("int");
 
-                    b.HasKey("Discountid", "Accountid");
+                    b.HasKey("DiscountId", "AccountId");
 
-                    b.HasIndex("Accountid");
+                    b.HasIndex("AccountId");
 
                     b.ToTable("MyDiscount");
                 });
@@ -226,15 +223,20 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int>("SizeId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("Amount")
                         .HasColumnType("int");
 
                     b.Property<double?>("Subtotal")
                         .HasColumnType("float");
 
-                    b.HasKey("OrderId", "ProductId");
+                    b.HasKey("OrderId", "ProductId", "SizeId");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("SizeId");
 
                     b.ToTable("OrderDetail");
                 });
@@ -247,14 +249,17 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool?>("Availability")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -262,13 +267,10 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                     b.Property<double?>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int?>("Quantity")
-                        .HasColumnType("int");
-
                     b.Property<int?>("ShopId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Size")
+                    b.Property<int?>("StockId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -276,6 +278,8 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("ShopId");
+
+                    b.HasIndex("StockId");
 
                     b.ToTable("Product");
                 });
@@ -307,16 +311,16 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
 
             modelBuilder.Entity("SU24_PRN212_SE1717_Group3.Models.Role", b =>
                 {
-                    b.Property<int>("Roleid")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Roleid"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Roleid");
+                    b.HasKey("Id");
 
                     b.ToTable("Role");
                 });
@@ -332,11 +336,11 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("DeleveryId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("DeliveryDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("DeliveryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -346,7 +350,7 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DeleveryId");
+                    b.HasIndex("DeliveryId");
 
                     b.ToTable("ShippingInformation");
                 });
@@ -365,6 +369,22 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Shop");
+                });
+
+            modelBuilder.Entity("SU24_PRN212_SE1717_Group3.Models.Size", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Size");
                 });
 
             modelBuilder.Entity("SU24_PRN212_SE1717_Group3.Models.Status", b =>
@@ -391,18 +411,16 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("DateNow")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Orderid")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("LastEditedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Orderid");
 
                     b.ToTable("Stock");
                 });
@@ -441,13 +459,13 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                 {
                     b.HasOne("SU24_PRN212_SE1717_Group3.Models.Account", "Account")
                         .WithMany()
-                        .HasForeignKey("Accountid")
+                        .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SU24_PRN212_SE1717_Group3.Models.Discount", "Discount")
                         .WithMany()
-                        .HasForeignKey("Discountid")
+                        .HasForeignKey("DiscountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -466,7 +484,7 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                         .WithMany()
                         .HasForeignKey("DiscountId");
 
-                    b.HasOne("SU24_PRN212_SE1717_Group3.Models.ShippingInformation", "Shippinginformation")
+                    b.HasOne("SU24_PRN212_SE1717_Group3.Models.ShippingInformation", "ShippingInformation")
                         .WithMany()
                         .HasForeignKey("ShippingId");
 
@@ -478,7 +496,7 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
 
                     b.Navigation("Discount");
 
-                    b.Navigation("Shippinginformation");
+                    b.Navigation("ShippingInformation");
 
                     b.Navigation("Status");
                 });
@@ -497,9 +515,17 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("SU24_PRN212_SE1717_Group3.Models.Size", "Size")
+                        .WithMany()
+                        .HasForeignKey("SizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Order");
 
                     b.Navigation("Product");
+
+                    b.Navigation("Size");
                 });
 
             modelBuilder.Entity("SU24_PRN212_SE1717_Group3.Models.Product", b =>
@@ -512,27 +538,24 @@ namespace SU24_PRN212_SE1717_Group3.Migrations
                         .WithMany()
                         .HasForeignKey("ShopId");
 
+                    b.HasOne("SU24_PRN212_SE1717_Group3.Models.Stock", "Stock")
+                        .WithMany()
+                        .HasForeignKey("StockId");
+
                     b.Navigation("Category");
 
                     b.Navigation("Shop");
+
+                    b.Navigation("Stock");
                 });
 
             modelBuilder.Entity("SU24_PRN212_SE1717_Group3.Models.ShippingInformation", b =>
                 {
                     b.HasOne("SU24_PRN212_SE1717_Group3.Models.Delivery", "Delivery")
                         .WithMany()
-                        .HasForeignKey("DeleveryId");
+                        .HasForeignKey("DeliveryId");
 
                     b.Navigation("Delivery");
-                });
-
-            modelBuilder.Entity("SU24_PRN212_SE1717_Group3.Models.Stock", b =>
-                {
-                    b.HasOne("SU24_PRN212_SE1717_Group3.Models.Order", "Drder")
-                        .WithMany()
-                        .HasForeignKey("Orderid");
-
-                    b.Navigation("Drder");
                 });
 #pragma warning restore 612, 618
         }

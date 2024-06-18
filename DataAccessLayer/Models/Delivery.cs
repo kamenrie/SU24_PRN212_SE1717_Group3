@@ -7,12 +7,12 @@ namespace SU24_PRN212_SE1717_Group3.Models
     public class Delivery
     {
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
-        public string ?Type { get; set; }
+        public string? Type { get; set; }
 
-        public double ?Price { get; set; }
+        public double? Price { get; set; }
 
-        public DateTime ?Date { get; set; }
+        public int? Day { get; set; }
     }
 }

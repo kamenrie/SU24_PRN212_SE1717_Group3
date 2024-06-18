@@ -11,15 +11,20 @@ namespace SU24_PRN212_SE1717_Group3.Models
 
         public int ProductId { get; set; }
 
+        public int SizeId { get; set; }
+
+        [ForeignKey("SizeId")]
+        public Size? Size {  get; set; } 
+
         [ForeignKey("OrderId")]
         public  Order? Order { get; set; }
 
         [ForeignKey("ProductId")]
         public Product? Product { get; set; }
 
-        public int ? Amount { get; set; }
+        public int? Amount { get; set; }
 
-        public double ? Subtotal { get; set; }
+        public double? Subtotal { get; set; }
 
     }
 }

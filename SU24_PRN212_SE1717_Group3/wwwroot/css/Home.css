@@ -9,7 +9,6 @@ img {
 
 .banner--background {
     width: 100%;
-    padding: 1% 0;
     & img
 
 {
@@ -25,7 +24,6 @@ img {
     justify-content: space-between;
     background-color: #C89A9A;
     margin: 1% 10%;
-    padding: 2% 0;
     & .feature--banner--feature
 
 {
@@ -48,12 +46,17 @@ img {
     justify-content: space-between;
     flex-direction: column;
     & p
+
 {
     margin: 5% 0;
 }
 
 }
 }
+}
+
+.new--product {
+    margin-bottom: 2%;
 }
 
 .hot--product {
@@ -63,9 +66,9 @@ img {
 .product--title {
     color: #BB8383;
     text-align: center;
-    font-size: 2rem;
+    font-size: 3rem;
     font-family: 'Segoe UI';
-    letter-spacing: 3px;
+    padding: 2% 0;
 }
 
 .product--top {
@@ -84,6 +87,7 @@ img {
 {
     width: 100%;
 }
+
 }
 
 .category {
@@ -104,22 +108,28 @@ img {
 
 .product--name {
     text-align: center;
+    font-size: 1.5rem;
+    font-family: cursive;
 }
 
 .product--price {
     display: flex;
     justify-content: space-around;
+    font-size: 1.25rem;
+    margin-bottom: 1%;
 }
 
 .view {
     text-align: center;
     & button
+
 {
     background-color: #F86969;
-    padding: 4%;
-    width: 65%;
+    padding: 3% 6%;
+    width: 85%;
     border: none;
     cursor: pointer;
+    font-size: 1.5rem;
 }
 
 & button:hover {
@@ -136,13 +146,13 @@ img {
 }
 
 .button--loadmore {
-    margin: 2% 0;
+    margin-top: 2%;
     padding: 1%;
     text-align: center;
     border: none;
     border-radius: 15px;
     background: #ac4e4e;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     cursor: pointer;
     transition: 0.2s;
     &:hover

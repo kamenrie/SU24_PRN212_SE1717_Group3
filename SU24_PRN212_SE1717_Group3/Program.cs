@@ -1,4 +1,5 @@
 using SU24_PRN212_SE1717_Group3.Dao;
+using SU24_PRN212_SE1717_Group3.DAO;
 using SU24_PRN212_SE1717_Group3.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ builder.Services.AddDbContext<ApplicationDbContext>();
 builder.Services.AddSession();
 builder.Services.AddScoped<AuthDao>();
 builder.Services.AddScoped<AccountDAO>();
+builder.Services.AddScoped<ProductDAO>();
 builder.Services.AddRequestDecompression();
 
 var app = builder.Build();

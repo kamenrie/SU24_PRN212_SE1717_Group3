@@ -5,13 +5,13 @@ namespace SU24_PRN212_SE1717_Group3.Models
     [Table("MyDiscount")]
     public class MyDiscount
     {
-       public int? Discountid { get; set; }
+       public int? DiscountId { get; set; }
 
-        public int? Accountid { get; set; }
+        public int? AccountId { get; set; }
 
-        [ForeignKey("Discountid")]
+        [ForeignKey("DiscountId")]
         public Discount? Discount { get; set; }
-        [ForeignKey("Accountid")]
+        [ForeignKey("AccountId")]
         public Account? Account { get; set; }
     }
 }
