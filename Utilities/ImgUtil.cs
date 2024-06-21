@@ -8,88 +8,50 @@ namespace Utilites
     public class ImgUtil
     {
 
-        public static byte[]? Compress(byte[] data)
+        public static byte[]? Compress(IFormFile data)
         {
-			if (data == null) return null;
-
-			using (var compressedStream = new MemoryStream())
-            using (var zipStream = new GZipStream(compressedStream, CompressionMode.Compress))
+            if (data == null)
             {
-                zipStream.Write(data, 0, data.Length);
-                return compressedStream.ToArray();
+                return null;
             }
-        }
-
-        public static byte[]? Decompress(byte[] data)
-        {
-			if (data == null) return null;
-
-			using (var compressedStream = new MemoryStream(data))
-            using (var zipStream = new GZipStream(compressedStream, CompressionMode.Decompress))
-            using (var resultStream = new MemoryStream())
-            {
-                zipStream.CopyTo(resultStream);
-                return resultStream.ToArray();
-            }
-        }
-        public static byte[]? ConvertIFormFileToByte(IFormFile data)
-        {
-            if (data == null) return null;
-
+            byte[] bytes;
             using (var stream = data.OpenReadStream())
             {
                 using (var reader = new BinaryReader(stream))
                 {
-                    return reader.ReadBytes((int)stream.Length);
+                    bytes = reader.ReadBytes((int)stream.Length);
+                }
+            }
+            using (MemoryStream compressedStream = new MemoryStream())
+            {
+                using (GZipStream gzipStream = new GZipStream(compressedStream, CompressionMode.Compress))
+                {
+                    gzipStream.Write(bytes, 0, bytes.Length);
+                }
+                return compressedStream.ToArray();
+            }
+
+        }
+
+        public static byte[]? Decompress(byte[]? data)
+        {
+            if (data == null)
+            {
+                return null;
+            }
+
+            using (MemoryStream compressedStream = new MemoryStream(data))
+            {
+                using (GZipStream gzipStream = new GZipStream(compressedStream, CompressionMode.Decompress))
+                {
+                    using (MemoryStream decompressedStream = new MemoryStream())
+                    {
+                        gzipStream.CopyTo(decompressedStream);
+                        return decompressedStream.ToArray();
+                    }
                 }
             }
         }
-
-
-        //public static byte[]? CompressImage(IFormFile data)
-        //{
-        //    if (data == null)
-        //    {
-        //        return null;
-        //    }
-        //    byte[] bytes;
-        //    using (var stream = data.OpenReadStream())
-        //    {
-        //        using (var reader = new BinaryReader(stream))
-        //        {
-        //            bytes = reader.ReadBytes((int)stream.Length);
-        //        }
-        //    }
-        //    using (MemoryStream outputStream = new MemoryStream(bytes.Length))
-        //    {
-        //        using (DeflateStream deflateStream = new DeflateStream(outputStream, CompressionMode.Compress, true))
-        //        {
-        //            deflateStream.Write(bytes, 0, bytes.Length);
-        //        }
-
-        //        return outputStream.ToArray();
-        //    }
-
-        //}
-
-        //public static byte[]? DecompressImage(byte[]? data)
-        //{
-        //    if (data == null)
-        //    {
-        //        return null;
-        //    }
-
-        //    using (MemoryStream outputStream = new MemoryStream(data.Length))
-        //    {
-        //        using (MemoryStream inputStream = new MemoryStream(data))
-        //        using (DeflateStream deflateStream = new DeflateStream(inputStream, CompressionMode.Decompress))
-        //        {
-        //            deflateStream.CopyTo(outputStream);
-        //        }
-
-        //        return outputStream.ToArray();
-        //    }
-        //}
 
     }
 }

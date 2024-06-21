@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SU24_PRN212_SE1717_Group3.Dao;
-using SU24_PRN212_SE1717_Group3.DAO;
-using SU24_PRN212_SE1717_Group3.Models;
-using Utilites;
+using DataAccessLayer.DAO;
+using DataAccessLayer.Models;
 
 namespace SU24_PRN212_SE1717_Group3.Controllers.Dashboard
 {

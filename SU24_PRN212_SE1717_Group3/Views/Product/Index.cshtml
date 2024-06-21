@@ -1,4 +1,4 @@
-﻿@model List<Product>
+﻿@model List<DataAccessLayer.Models.Product>
 @{
 }
 <link rel="stylesheet" href="~/css/Product.css" />
@@ -26,27 +26,29 @@
 		</div>
 	</div>
 	<div class="group-product">
-		<div class="product">
-			<div class="product--banner">
-				<div class="Product--image">
-					<img src="Product.jpg" alt="" />
+		@foreach (var product in Model)
+		{
+			<div class="product">
+				<div class="product--banner">
+					<div class="Product--image">
+						<img src="data:image/jpeg;base64, @Convert.ToBase64String(product.Image)" />
+					</div>
+					<div class="category">
+						<p>@product.Category.Name</p>
+					</div>
 				</div>
-				<div class="category">
-					<p>Category</p>
+				<div class="product--name">
+					<p>@product.Name</p>
+				</div>
+				<div class="product--price">
+					<p class="price--new">$@product.Price</p>
+					<p class="price--old">$@(product.Price * 2)</p>
+				</div>
+				<div class="view">
+					<button>View</button>
 				</div>
 			</div>
-			<div class="product--name">
-				<p>product name</p>
-			</div>
-			<div class="product--price">
-				<p class="price--new">180$</p>
-				<p class="price--old">190$</p>
-			</div>
-			<div class="view">
-				<button>View</button>
-			</div>
-		</div>
-
+		}
 	</div>
 
 	<div class="pagination">

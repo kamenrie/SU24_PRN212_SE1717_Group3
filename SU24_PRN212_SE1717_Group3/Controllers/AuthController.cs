@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SU24_PRN212_SE1717_Group3.Dao;
-using SU24_PRN212_SE1717_Group3.Models;
+using DataAccessLayer.DAO;
+using DataAccessLayer.Models;
 
 namespace SU24_PRN212_SE1717_Group3.Controllers
 {
@@ -27,14 +27,17 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
                 return RedirectToAction("Login", "Auth");
             }
             HttpContext.Session.SetInt32("accountid", acc.Id);
-            if (acc.Role.Name == "User")
+            if (acc.Role.Name == "Admin")
+            {
+				return RedirectToAction("Index", "Home");
+			} else if (acc.Role.Name == "Shop")
             {
 				return RedirectToAction("Index", "Home");
 			} else
             {
-				return RedirectToAction("Index", "Home");
-			}
-		}
+                return RedirectToAction("Index", "Home");
+            }
+        }
 
         [HttpPost]
         public async Task<IActionResult> Register(Account acc) 

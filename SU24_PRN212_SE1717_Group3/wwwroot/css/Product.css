@@ -1,4 +1,8 @@
-﻿.category-list {
+﻿.product-list {
+    padding: 5%;
+}
+
+.category-list {
     display: flex;
     justify-content: space-between;
     padding: 0 20%;
@@ -66,6 +70,8 @@
 
 {
     width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 
 }
@@ -80,6 +86,10 @@
 
 {
     width: 100%;
+    font-size: 1.5rem;
+    color: black;
+    filter: drop-shadow(#fff 0rem 0rem 2px);
+    text-shadow: 0 0 2px #fff;
 }
 
 }
@@ -107,7 +117,6 @@
 
 & button:hover {
     transition: 0.2s;
-    border: #000 solid 4px;
     background-color: #ac4e4e;
     color: white;
 }

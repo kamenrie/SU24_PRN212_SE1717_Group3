@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SU24_PRN212_SE1717_Group3.DAO;
+using DataAccessLayer.DAO;
 
 namespace SU24_PRN212_SE1717_Group3.Controllers
 {

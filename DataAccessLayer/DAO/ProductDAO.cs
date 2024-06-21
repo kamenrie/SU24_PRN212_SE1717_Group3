@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DataAccessLayer.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SU24_PRN212_SE1717_Group3.DataAccess;
-using SU24_PRN212_SE1717_Group3.Models;
 using Utilites;
 
 
-namespace SU24_PRN212_SE1717_Group3.DAO
+namespace DataAccessLayer.DAO
 {
 	public class ProductDAO(ApplicationDbContext DbContext)
 	{
@@ -89,7 +89,7 @@ namespace SU24_PRN212_SE1717_Group3.DAO
 			var Shop = await DbContext.Shop.FirstOrDefaultAsync(x => x.Id == shopId);
 			if (pro != null)
 			{
-				pro.Image = ImgUtil.Compress(ImgUtil.ConvertIFormFileToByte(img));
+				pro.Image = ImgUtil.Compress(img);
 				pro.Stock = stock;
 				pro.Category = category;
 				pro.Shop = Shop;
@@ -108,7 +108,7 @@ namespace SU24_PRN212_SE1717_Group3.DAO
 			product.Name = pro.Name;
 			product.Description = pro.Description;
 			product.Price = pro.Price;
-			product.Image = ImgUtil.Compress(ImgUtil.ConvertIFormFileToByte(img)) ?? product.Image;
+			product.Image = ImgUtil.Compress(img) ?? product.Image;
 			product.Category = catename;
 			product.Stock.Quantity = quan;
 			product.Stock.LastEditedDate = DateTime.Now;
