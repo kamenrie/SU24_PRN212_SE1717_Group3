@@ -40,7 +40,7 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
         public async Task<IActionResult> Register(Account acc) 
         {
             
-            await authDAO.createAccount(acc); 
+            await authDAO.CreateAccount(acc); 
             return RedirectToAction("Login", "Auth");
         }
 

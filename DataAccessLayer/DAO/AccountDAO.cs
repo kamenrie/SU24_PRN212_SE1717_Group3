@@ -6,11 +6,11 @@ using Utilites;
 
 namespace SU24_PRN212_SE1717_Group3.Dao
 {
-    public class AccountDAO(ApplicationDbContext dbcontext)
+    public class AccountDAO(ApplicationDbContext DbContext)
     {
-        public async Task<Account> getAccountById(int? Id)
+        public async Task<Account> GetAccountById(int? Id)
         {
-            var account = await dbcontext.Account.Include(x => x.Profile).FirstOrDefaultAsync(x => x.Id == Id);
+            var account = await DbContext.Account.Include(x => x.Profile).FirstOrDefaultAsync(x => x.Id == Id);
             if (account != null)
             {
                 account.Profile.Image = ImgUtil.Decompress(account.Profile.Image);
@@ -23,8 +23,8 @@ namespace SU24_PRN212_SE1717_Group3.Dao
             account.Profile.Image = ImgUtil.Compress(ImgUtil.ConvertIFormFileToByte(img)) ?? account.Profile.Image;
             account.Profile.Phone = pro.Phone;
             account.Profile.Address = pro.Address;
-            dbcontext.Update(account.Profile);
-            await dbcontext.SaveChangesAsync();
+            DbContext.Update(account.Profile);
+            await DbContext.SaveChangesAsync();
         }
     }
 }

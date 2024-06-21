@@ -10,7 +10,7 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
         public async Task<IActionResult> Profile()
         {
             int? accountId = HttpContext.Session.GetInt32("accountid");
-            var account = await accountDAO.getAccountById(accountId);
+            var account = await accountDAO.GetAccountById(accountId);
             if (account != null)
             {
                 return View("Profile", account.Profile);
@@ -21,7 +21,7 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
         [HttpPost]
         public async Task<IActionResult> Profile(Profile pro, IFormFile img)
         {
-            var account = await accountDAO.getAccountById(HttpContext.Session.GetInt32("accountid"));
+            var account = await accountDAO.GetAccountById(HttpContext.Session.GetInt32("accountid"));
             if (account != null)
             {
                 accountDAO.UpdateProfile(pro, img, account);

@@ -5,22 +5,22 @@ using SU24_PRN212_SE1717_Group3.Models;
 
 namespace SU24_PRN212_SE1717_Group3.Dao
 {
-    public class AuthDao(ApplicationDbContext dbcontext)
+    public class AuthDao(ApplicationDbContext DbContext)
     {
         public async Task<Account> Login(string email,string pass)
         {
-            return await dbcontext.Account.FirstOrDefaultAsync(x => x.Email == email && x.Password == pass);
+            return await DbContext.Account.FirstOrDefaultAsync(x => x.Email == email && x.Password == pass);
         }
 
-        public async Task createAccount( Account account)
+        public async Task CreateAccount( Account account)
         {
-            var role = dbcontext.Role.FirstOrDefault(x => x.Name == "user");
+            var role = DbContext.Role.FirstOrDefault(x => x.Name == "user");
             var profile = new Profile();
-            dbcontext.Profile.Add(profile);
+            DbContext.Profile.Add(profile);
             account.Role = role;
             account.Profile = profile;
-            dbcontext.Account.Add(account);
-            await dbcontext.SaveChangesAsync(); 
+            DbContext.Account.Add(account);
+            await DbContext.SaveChangesAsync(); 
         }
     }
 }
