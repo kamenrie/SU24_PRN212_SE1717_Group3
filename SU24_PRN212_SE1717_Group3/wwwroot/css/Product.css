@@ -48,6 +48,7 @@
 }
 
 .product {
+    margin-top: 5%;
     width: 25%;
 }
 
@@ -65,9 +66,9 @@
 
 .Product--image {
     width: 90%;
-    padding-left: 5%;
-    & img
+    border: 1px solid #000;
 
+    & img
 {
     width: 100%;
     aspect-ratio: 1/1;
@@ -78,7 +79,7 @@
 
 .category {
     position: absolute;
-    width: 100%;
+    width: 90%;
     text-align: center;
     color: white;
     bottom: 0;

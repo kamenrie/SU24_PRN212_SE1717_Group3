@@ -39,7 +39,7 @@
 			<tr>
 
 				<td class="product-image">
-					<img src="data:image/*;base64,@Convert.ToBase64String(product.Image)" alt="">
+					<img src="data:image/*;base64, @Convert.ToBase64String(product.Image)" alt="">
 				</td>
 				<td class="product-information">
 					<p>@product.Name</p>
@@ -67,12 +67,12 @@
 	</table>
 
 	<div class="pagination">
-		<button @(CurrentPage == 1 ? "disabled" : "") onclick="window.location.href='/ProductManager/@ViewData["Access"]page=@(CurrentPage - 1)'"><i class="fa-solid fa-chevron-left"></i> </button>
+		<button @(CurrentPage <= 1 ? "disabled" : "") onclick="window.location.href=`/ProductManager/@ViewData["Access"]CurrentPage=@(CurrentPage - 1)`"><i class="fa-solid fa-chevron-left"></i> </button>
 		@for (int i = 1; i <= EndPage; i++)
 		{
-			<button @(CurrentPage==i?"active":"") onclick="window.location.href='/ProductManager/@ViewData["Access"]page=@i'">@i</button>
+			<button @(CurrentPage == i ? "disabled" : "") onclick="window.location.href=`/ProductManager/@ViewData["Access"]CurrentPage=@i`">@i</button>
 		}
-		<button @(CurrentPage==EndPage?"disabled":"") onclick="window.location.href='/ProductManager/@ViewData["Access"]page=@(CurrentPage+1)'"><i class="fa-solid fa-angle-right"></i></button>
+		<button @(CurrentPage >= EndPage ? "disabled" : "") onclick="window.location.href=`/ProductManager/@ViewData["Access"]CurrentPage=@(CurrentPage + 1)`"><i class="fa-solid fa-angle-right"></i></button>
 	</div>
 </div>
 

@@ -5,16 +5,16 @@ using DataAccessLayer.Models;
 
 namespace SU24_PRN212_SE1717_Group3.Controllers.Dashboard
 {
-	public class ProductManagerController(ProductDAO proDAO) : Controller
+	public class ProductManagerController(ProductDAO productDAO) : Controller
 	{
 
 		[HttpGet]
 		public async Task<IActionResult> Index(int CurrentPage)
 		{
-			int endpage = (int)Math.Ceiling(proDAO.GetCountProduct() / 6.0);
+			int endpage = (int)Math.Ceiling(productDAO.GetCountProduct() / 6.0);
 			CurrentPage = CurrentPage < 1 ? 1 : CurrentPage > endpage ? endpage : CurrentPage;
-			var listProduct = await proDAO.GetAllProduct();
-			listProduct.Skip((CurrentPage - 1) * 6).Take(6).ToList();
+			var listProduct = await productDAO.GetAllProduct();
+			listProduct = listProduct.Skip((CurrentPage - 1) * 6).Take(6).ToList();
 
 			ViewData["Access"] = "Index?";
 			ViewData["EndPage"] = endpage;
@@ -24,8 +24,8 @@ namespace SU24_PRN212_SE1717_Group3.Controllers.Dashboard
 		[HttpGet]
 		public async Task<IActionResult> Add()
 		{
-			TempData["Category"] = await proDAO.GetCategory();
-			TempData["Shop"] = await proDAO.GetShop();
+			TempData["Category"] = await productDAO.GetCategory();
+			TempData["Shop"] = await productDAO.GetShop();
 			return View();
 		}
 
@@ -35,7 +35,7 @@ namespace SU24_PRN212_SE1717_Group3.Controllers.Dashboard
 
 			if (product != null)
 			{
-				await proDAO.AddProduct(product, quan, categoryId, shopId, img);
+				await productDAO.AddProduct(product, quan, categoryId, shopId, img);
 			}
 			return RedirectToAction("Index");
 		}
@@ -43,35 +43,35 @@ namespace SU24_PRN212_SE1717_Group3.Controllers.Dashboard
 		[HttpGet]
 		public async Task<IActionResult> Update(int Id)
 		{
-			var product = await proDAO.GetProductById(Id);
-			TempData["Category"] = await proDAO.GetCategory();
-			TempData["Shop"] = await proDAO.GetShop();
+			var product = await productDAO.GetProductById(Id);
+			TempData["Category"] = await productDAO.GetCategory();
+			TempData["Shop"] = await productDAO.GetShop();
 			return View(product);
 		}
 
 		[HttpPost]
 		public async Task<IActionResult> Update(Product pro, int quan, string name, IFormFile img)
 		{
-			await proDAO.UpdateProduct(pro, quan, name, img);
+			await productDAO.UpdateProduct(pro, quan, name, img);
 			return RedirectToAction("Index");
 		}
 
 		[HttpGet]
 		public async Task<IActionResult> Delete(int Id)
 		{
-			var pro = await proDAO.GetProductById(Id);
-			await proDAO.Delete(pro);
+			var pro = await productDAO.GetProductById(Id);
+			await productDAO.Delete(pro);
 			return RedirectToAction("Index");
 		}
 
 		[HttpGet]
 		public async Task<IActionResult> Search(string name, int CurrentPage)
 		{
-			int endpage = (int)Math.Ceiling(proDAO.GetCountProductBySearchName(name) / 6.0);
+			int endpage = (int)Math.Ceiling(productDAO.GetCountProductBySearchName(name) / 6.0);
 			CurrentPage = CurrentPage < 1 ? 1 : CurrentPage > endpage ? endpage : CurrentPage;
-			var listProduct = await proDAO.GetAllProductBySearchName(name);
+			var listProduct = await productDAO.GetAllProductBySearchName(name);
 
-			listProduct.Skip((CurrentPage - 1) * 6).Take(6).ToList();
+			listProduct = listProduct.Skip((CurrentPage - 1) * 6).Take(6).ToList();
 
 
 			ViewData["Access"] = "Search?Name=" + name + "&";

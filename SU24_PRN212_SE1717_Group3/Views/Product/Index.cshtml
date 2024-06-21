@@ -1,29 +1,24 @@
 ﻿@model List<DataAccessLayer.Models.Product>
+@inject DataAccessLayer.ApplicationDbContext DbContext
 @{
+	int CurrentPage = Convert.ToInt32(ViewData["CurrentPage"] ?? 0);
+	int EndPage = Convert.ToInt32(ViewData["EndPage"] ?? 0);
+	ViewData["ListCategory"] = DbContext.Category.ToList();
 }
 <link rel="stylesheet" href="~/css/Product.css" />
 <div class="product-list">
 	<div class="category-list">
-		<div class="category-img">
+		<div class="category-img" onclick="window.location.href='/Product'">
 			<img src="Product.jpg" alt="" />
 			<p>All product</p>
 		</div>
-		<div class="category-img">
-			<img src="Product.jpg" alt="" />
-			<p>Men's shoes</p>
-		</div>
-		<div class="category-img">
-			<img src="Product.jpg" alt="" />
-			<p>Women's shoes</p>
-		</div>
-		<div class="category-img">
-			<img src="Product.jpg" alt="" />
-			<p>Sport shoes</p>
-		</div>
-		<div class="category-img">
-			<img src="Product.jpg" alt="" />
-			<p>Sandanl</p>
-		</div>
+		@foreach (var category in ViewData["ListCategory"] as List<Category>)
+		{
+			<div class="category-img" onclick="window.location.href=`/Product/Category?CategoryName=@category.Name`">
+				<img src="@(category.Name).jpg" />
+				<p>@category.Name</p>
+			</div>
+		}
 	</div>
 	<div class="group-product">
 		@foreach (var product in Model)
@@ -52,27 +47,13 @@
 	</div>
 
 	<div class="pagination">
-		<button><i class="fa-solid fa-chevron-left"></i></button>
-		<button>1</button>
-		<button>2</button>
-		<button>3</button>
-		<button><i class="fa-solid fa-angle-right"></i></button>
+		<button @(CurrentPage <= 1 ? "disabled" : "") onclick="window.location.href=`/Product/@ViewData["Access"]CurrentPage=@(CurrentPage - 1)`"><i class="fa-solid fa-chevron-left"></i> </button>
+		@for (int i = 1; i <= EndPage; i++)
+		{
+			<button @(CurrentPage == i ? "disabled" : "") onclick="window.location.href=`/Product/@ViewData["Access"]CurrentPage=@i`">@i</button>
+		}
+		<button @(CurrentPage >= EndPage ? "disabled" : "") onclick="window.location.href=`/Product/@ViewData["Access"]CurrentPage=@(CurrentPage + 1)`"><i class="fa-solid fa-angle-right"></i></button>
 	</div>
 </div>
-<script>
-	document.addEventListener("DOMContentLoaded", function () {
-		const categoryItems = document.querySelectorAll(".category-img");
-
-		categoryItems.forEach((item) => {
-			item.addEventListener("click", function () {
-				// Remove 'selected' class from all items
-				categoryItems.forEach((i) => i.classList.remove("selected"));
-
-				// Add 'selected' class to the clicked item
-				this.classList.add("selected");
-			});
-		});
-	});
-</script>
 
 

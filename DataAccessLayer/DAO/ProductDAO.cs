@@ -1,8 +1,6 @@
 ﻿using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SU24_PRN212_SE1717_Group3.DataAccess;
 using Utilites;
 
 
@@ -22,12 +20,24 @@ namespace DataAccessLayer.DAO
 			return listProduct;
 		}
 
-		public async Task<List<Product>> GetAllProductBySearchName(string name)
+		public async Task<List<Product>> GetAllProductBySearchName(string Name)
 		{
 			var listProduct = await DbContext.Product
 											 .Include(x => x.Category)
 											 .Include(x => x.Stock)
-											 .Where(x => x.Name.Contains(name))
+											 .Where(x => x.Name.Contains(Name))
+											 .OrderByDescending(x => x.Id)
+											 .ToListAsync();
+
+			listProduct.ForEach(product => { product.Image = ImgUtil.Decompress(product.Image); });
+			return listProduct;
+		}
+		public async Task<List<Product>> GetAllProductByCategoryName(string CategoryName)
+		{
+			var listProduct = await DbContext.Product
+											 .Include(x => x.Category)
+											 .Include(x => x.Stock)
+											 .Where(x => x.Category.Name.Equals(CategoryName))
 											 .OrderByDescending(x => x.Id)
 											 .ToListAsync();
 

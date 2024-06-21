@@ -1,5 +1,5 @@
 using DataAccessLayer.DAO;
-using SU24_PRN212_SE1717_Group3.DataAccess;
+using DataAccessLayer;
 
 var builder = WebApplication.CreateBuilder(args);
 
