@@ -52,12 +52,7 @@ namespace DataAccessLayer.DAO
 									 .Include(x => x.Shop)
 									 .Include(x => x.Stock)
 									 .FirstOrDefaultAsync(x => x.Id == id);
-
-			if (pro != null)
-			{
-				pro.Image = ImgUtil.Decompress(pro.Image);
-
-			}
+			pro.Image = ImgUtil.Decompress(pro.Image);
 			return pro;
 		}
 
