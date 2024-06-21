@@ -1,0 +1,62 @@
+﻿
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.overviewManager-container {
+    display: flex;
+    padding: 2% 3%;
+    align-items: center;
+}
+
+.title {
+    text-align: center;
+    margin: 3% 0;
+}
+
+.overviewManager-top {
+    width: 70%;
+    padding: 2%;
+}
+
+.user-text {
+    padding: 1% 5%;
+    background: pink;
+    width: 50%;
+    font-size: 2rem;
+    margin: 0 auto;
+}
+
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 2%;
+}
+
+.number {
+    text-align: center;
+}
+
+.registerdate {
+    text-align: center;
+}
+
+
+
+.overviewManager-top-right {
+    width: 30%;
+    padding: 2%;
+}
+
+
+
+    .overviewManager-top-right img {
+        width: 100%;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+        clip-path: circle(50%);
+    }

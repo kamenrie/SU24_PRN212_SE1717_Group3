@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<link href="~/css/FeedbackManager.css" rel="stylesheet" />
+
+<body>
+    <div class="header" data-include="header"></div>
+
+    <div class="feedback">
+        <div class="feedback-user-ava"><img src="thay.jpg" alt="avatar"></div>
+        <div class="feedback-user-content">
+            <div class="feedback-user-content-header">
+                <div class="feedback-user-content-info">
+                    <div class="feedback-user-name">Dullahan khanh</div>
+                    <i class="fa-solid fa-circle"></i>
+                    <span id="time-1"></span><span id="date-1"></span>
+                </div>
+                <i class="fa-solid fa-x x-btn"></i>
+            </div>
+
+            <p class="feedback-comment">
+                Chủ shop quá đẹp trai.
+            </p>
+            <button class="reply-btn" for="reply" onclick="toggleTextarea(0)">Reply</button>
+            <div class="feedback-reply" id="feedback-reply-0" style="display: none;">
+                <textarea name="reply" id="reply" cols="30" rows="3">Very handsome is my name.</textarea>
+                <i class="fa-solid fa-location-arrow fa-rotate-by" style="--fa-rotate-angle: 45deg;"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class=" feedback">
+        <div class="feedback-user-ava"><img src="OIP.jpg" alt="avatar"></div>
+        <div class="feedback-user-content">
+            <div class="feedback-user-content-header">
+                <div class="feedback-user-content-info">
+                    <div class="feedback-user-name">liu bei</div>
+                    <i class="fa-solid fa-circle"></i>
+                    <span id="time-2"></span><span id="date-2"></span>
+                </div>
+                <i class="fa-solid fa-x"></i>
+            </div>
+
+            <p class="feedback-comment">
+         Chủ shop quá đẹp trai.
+            </p>
+            <button class="reply-btn" for="reply" onclick="toggleTextarea(1)">Reply</button>
+            <div class="feedback-reply" id="feedback-reply-1" style="display: none;">
+                <textarea name="reply" id="reply" cols="30" rows="3"></textarea>
+                <i class="fa-solid fa-location-arrow fa-rotate-by"></i>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</body>
+
+<script src="~/js/feedbackManager.js"></script>

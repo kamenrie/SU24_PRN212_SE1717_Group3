@@ -1,0 +1,144 @@
+﻿.overviewmanagerment {
+    & h2
+
+{
+    width: 100%;
+}
+
+}
+
+.toppic {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-sold-most {
+    padding: 0 5%;
+}
+
+.CONCAC {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 60%;
+    padding: 0 5%;
+}
+
+.product-sold-most {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-sold {
+    width: 100%;
+}
+
+.most-product {
+    width: 30%;
+    text-align: center;
+    & img
+
+{
+    position: relative;
+    text-align: center;
+    width: 80%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+}
+
+}
+
+.sold {
+    display: flex;
+    align-items: baseline;
+    background: aliceblue;
+    padding: 0% 2%;
+    margin: 1%;
+    height: fit-content;
+}
+
+.number {
+    text-align: center;
+}
+
+.registerdate {
+    text-align: center;
+}
+
+.most-text h2 {
+    margin: 0;
+}
+
+.product-sold-top {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    padding: 2% 5%;
+    align-items: baseline;
+}
+
+.sold-year {
+    font-size: 1.25rem;
+}
+
+.body-chart {
+    font-family: Arial, sans-serif;
+    justify-content: space-between;
+    height: 40vh;
+    margin: 0;
+}
+
+.chart {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 100%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.bar {
+    width: 7%;
+    background-color: #4caf50;
+    text-align: center;
+    color: white;
+    margin: 0 5px;
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+}
+
+    .bar:hover {
+        background-color: #45a049;
+    }
+
+    .bar::after {
+        content: attr(title);
+        position: absolute;
+        top: -20px;
+        color: black;
+        font-weight: bold;
+    }
+
+.reveue-picture {
+    margin-top: 7%;
+    display: flex;
+}
+
+.concm {
+    margin-top: 18%;
+}
+
+.reveu-chart {
+    justify-content: space-between;
+    width: 70%;
+}
+
+.chart-doughnut {
+    width: 30%;
+}
