@@ -1,0 +1,91 @@
+﻿.product-image {
+    width: 12%;
+    & img
+
+{
+    width: 100%;
+}
+
+}
+
+table {
+    border-spacing: 0;
+}
+
+.table {
+    background-color: #F95F5F;
+    text-align: center;
+    & th
+
+{
+    padding: 2%;
+    width: 20%;
+}
+
+}
+
+td {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.category {
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: "Roboto";
+}
+
+.inventory {
+    & div
+
+{
+    display: flex;
+    justify-content: space-around;
+    background-color: transparent;
+}
+
+& input {
+    width: 20%;
+    border: none;
+    text-align: center;
+    background-color: #D9D9D9;
+    &:focus-visible
+
+{
+    outline: 0;
+}
+
+}
+
+& input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+
+& button {
+    font-size: 1.5rem;
+    border: none;
+    background-color: #D9D9D9;
+}
+
+}
+
+.checkout-button {
+    text-align: center;
+}
+
+    .checkout-button button {
+        padding: 1%;
+        width: 20%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: aliceblue;
+        background-color: #438a1f;
+    }
+
+        .checkout-button button:hover {
+            background-color: #82CD5F;
+        }
