@@ -39,6 +39,7 @@
 
 .group-product {
     display: flex;
+    flex-wrap: wrap;
     padding: 1% 0;
 }
 
