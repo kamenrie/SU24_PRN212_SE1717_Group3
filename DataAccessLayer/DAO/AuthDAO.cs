@@ -11,7 +11,7 @@ namespace DataAccessLayer.DAO
             return await DbContext.Account.Include(x => x.Role).FirstOrDefaultAsync(x => x.Email == email && x.Password == pass);
         }
 
-        public async Task CreateAccount( Account account)
+        public async Task CreateAccount(Account account)
         {
             var role = DbContext.Role.FirstOrDefault(x => x.Name == "User");
             var profile = new Profile();

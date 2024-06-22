@@ -54,6 +54,7 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
 		{
 			var Product = await productDAO.GetProductById(Id);
 			var ListProduct = await productDAO.GetAllProductByCategoryName(Product.Category.Name);
+			ListProduct.Remove(Product);
 			ViewData["ListSimilarProduct"] = ListProduct.OrderBy(x => Guid.NewGuid()).Take(4).ToList();
 			return View(Product);
 		}

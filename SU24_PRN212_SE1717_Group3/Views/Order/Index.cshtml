@@ -1,0 +1,60 @@
+﻿@model List<OrderDetail>
+@{
+}
+<link href="~/css/Order.css" rel="stylesheet" />
+
+<div class="list--product">
+	<div class="table-form-container">
+		<table>
+			<tr class="table">
+				<th>Product</th>
+				<th></th>
+				<th>Size</th>
+				<th>Category</th>
+				<th>Amount</th>
+				<th>Subtotal</th>
+				<th></th>
+			</tr>
+			@foreach (var orderDetail in Model)
+			{
+				<tr>
+					<td class="product-image">
+						<img src="data:image/jpeg;base64, @Convert.ToBase64String(orderDetail.Product.Image)">
+					</td>
+					<td class="product-information">
+						<p>@orderDetail.Product.Name</p>
+						<p>$@orderDetail.Product.Price</p>
+					</td>
+					<td class="category">
+						@orderDetail.Size.Name
+					</td>
+					<td class="category">
+						@orderDetail.Product.Category.Name
+					</td>
+					<td class="inventory">
+						<div>
+							<button type="button" onclick="window.location.href='/Order/Update?productId=@orderDetail.Product.Id&sizeId=@orderDetail.Size.Id&amount=@(orderDetail.Amount-1)'">
+								<i class="fa-solid fa-minus"></i>
+							</button>
+							@orderDetail.Amount
+							<button type="button" onclick="window.location.href='/Order/Update?productId=@orderDetail.Product.Id&sizeId=@orderDetail.Size.Id&amount=@(orderDetail.Amount+1)'">
+								<i class="fa-solid fa-plus"></i>
+							</button>
+						</div>
+					</td>
+					<td class="product-button">
+						$@orderDetail.Subtotal
+					</td>
+					<td>
+						<i class="fa-solid fa-trash-can"
+						   onclick="window.location.href='/Order/Delete?productId=@orderDetail.Product.Id&sizeId=@orderDetail.Size.Id'">
+						</i>
+					</td>
+				</tr>
+			}
+		</table>
+		<div class="checkout-button">
+			<button>checkout</button>
+		</div>
+	</div>
+</div>

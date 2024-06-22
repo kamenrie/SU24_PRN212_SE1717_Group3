@@ -1,76 +1,68 @@
 ﻿@model DataAccessLayer.Models.Product
 @{
-    ViewData["Title"] = "Update Product";
-    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+	ViewData["Title"] = "Update Product";
+	Layout = "~/Views/Shared/DashboardLayout.cshtml";
 }
-
 
 <link href="~/css/Addproduct.css" rel="stylesheet" />
 
 <div class="form__product__container">
-    <form asp-action="Update" asp-controller="ProductManager" method="post" class="form__data"
-          enctype="multipart/form-data">
-        <h2>UPDATE PRODUCT FORM</h2>
-        @* <div style="color: red"></div>
-        <div style="color: green; font-size: 15px"></div> *@
-        <div class="shop">
-            @foreach (var shop in TempData["Shop"] as List<Shop>)
-            {
-                <label>Shop @shop.Name</label>
-            }
-            
-            
-        </div>
-        <div class="form__input" style="display:none;">
-            <input  value="@Model.Id" asp-for="Id" name="Id"  hidden />
-        </div>
-        <div class="form__input">
-            <label>Name</label>
-            <input type="text" value="@Model.Name" asp-for="Name"   placeholder="Product Name" required />
-        </div>
-        <div class="form__input">
-            <label>Image</label>
-            <div class="form__input__image" onclick="triggerFileInput()">
-                <button type="button">Choose File</button>
-                <p id="imageName"></p>
-            </div>
-            <input accept="image/*" type="file" value="@Model.Image" asp-for="Image" name="img" id="imageInput"
-                   onchange="handleFileChange()" oninvalid="alert('Please add image')" />
-        </div>
-        <img id="ProductImage" src="data:image/*;base64,@Convert.ToBase64String(Model.Image)">
+	<form asp-action="Update" asp-controller="ProductManager" method="post" class="form__data"
+		  enctype="multipart/form-data">
+		<h2>UPDATE PRODUCT FORM</h2>
+		<div class="shop">
+			<label>Shop @ViewData["ShopName"]</label>
+		</div>
+		<div class="form__input" style="display:none;">
+			<input value="@Model.Id" asp-for="Id" name="Id" hidden />
+		</div>
+		<div class="form__input">
+			<label>Name</label>
+			<input type="text" value="@Model.Name" asp-for="Name" placeholder="Product Name" required />
+		</div>
+		<div class="form__input">
+			<label>Image</label>
+			<div class="form__input__image" onclick="triggerFileInput()">
+				<button type="button">Choose File</button>
+				<p id="imageName"></p>
+			</div>
+			<input accept="image/*" type="file" value="@Model.Image" asp-for="Image" name="img" id="imageInput"
+				   onchange="handleFileChange()" oninvalid="alert('Please add image')" />
+		</div>
+		<img id="ProductImage" src="data:image/*;base64,@Convert.ToBase64String(Model.Image)">
 
-        <div class="form__input">
-            <label>Price</label>
-            <input type="text" value="@Model.Price" asp-for="Price"  placeholder="Product Price" pattern="\d+.?\d*"
-                   oninvalid="setCustomValidity('Price must be a positive demical number')"
-                   oninput="setCustomValidity('')" required />
-        </div>
-        <div class="form__input">
-            <label>Description</label>
-            <textarea cols="30" rows="10"
-                      placeholder="Product Description"  asp-for="Description" required>@Model.Description</textarea>
-        </div>
-         <div class="form__input">
-            <label>Quanlity</label>
-            <input type="number" name="quan" value="@Model.Stock.Quantity" min="0" step="1" placeholder="Quanlity" required>
-        </div>
-        <div class="form__input">
-            <label>Category</label>
-            <select name="name"  id="category" required>
-                <option value="@Model.Category.Name">@Model.Category.Name</option>
-            @foreach (var category in TempData["Category"] as List<Category>)
-            {
-                <option value="@category.Name">@category.Name</option>
-            }
-           
-            </select>
-        </div>
+		<div class="form__input">
+			<label>Price</label>
+			<input type="text" value="@Model.Price" asp-for="Price" placeholder="Product Price" pattern="\d+.?\d*"
+				   oninvalid="setCustomValidity('Price must be a positive demical number')"
+				   oninput="setCustomValidity('')" required />
+		</div>
+		<div class="form__input">
+			<label>Description</label>
+			<textarea cols="30" rows="10"
+					  placeholder="Product Description" asp-for="Description" required>@Model.Description</textarea>
+		</div>
+		<div class="form__input">
+			<label>Quanlity</label>
+			<input type="number" name="quantity" value="@Model.Stock.Quantity" min="0" step="1" placeholder="Quanlity" required>
+		</div>
+		<div class="form__input">
+			<label>Category</label>
+			<select name="categoryId" id="category" required>
+				<option value="@Model.Category.Id">@Model.Category.Name</option>
+				@foreach (var category in ViewData["Category"] as List<Category>)
+				{
+					<option value="@category.Id">@category.Name</option>
+				}
 
-        <div class="form__button">
-            <button type="reset">Clear</button>
-            <button class="add" type="submit">Summit</button>
-        </div>
-    </form>
+			</select>
+		</div>
+
+		<div class="form__button">
+			<button type="reset">Clear</button>
+			<button class="add" type="submit">Summit</button>
+		</div>
+	</form>
 
 </div>
 

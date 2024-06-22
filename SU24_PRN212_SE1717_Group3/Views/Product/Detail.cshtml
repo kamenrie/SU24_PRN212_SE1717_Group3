@@ -1,7 +1,11 @@
 ﻿@model Product
+@inject DataAccessLayer.DAO.ProductDAO productDAO
+@inject DataAccessLayer.ApplicationDbContext DbContext
+@{
+	ViewData["Size"] = DbContext.Size.ToList();
+}
 <link href="~/css/ProductDetail.css" rel="stylesheet" />
-
-<div class="cart-container">
+<div class="detail-container">
 	<div class="navar">
 		<div class="cart-img">
 			<img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Image)" alt="" />
@@ -18,10 +22,15 @@
 					<p>$@(Model.Price * 2)</p>
 				</div>
 			</div>
-			<form asp-controller="Order" asp-action="Add" class="banner">
-				<div class="cart-total">
-					<input type="number" name="quantity" value="1" min="1" max="@Model.Stock.Quantity" />
-				</div>
+			<form asp-controller="Order" asp-action="Add" method="post" class="banner">
+				<input type="hidden" name="productId" value="@Model.Id" />
+				<input class="cart-total" type="number" name="amount" value="1" min="1" max="@Model.Stock.Quantity" required />
+				<select class="cart-total" name="sizeId" required>
+					@foreach(var size in ViewData["Size"] as List<Size>)
+					{
+						<option value="@size.Id">@size.Name</option>
+					}
+				</select>
 				<div class="add">
 					<button type="submit">Add To Cart</button>
 				</div>
@@ -58,7 +67,7 @@
 				</div>
 				<div class="product--price">
 					<p class="price--new">$@product.Price</p>
-					<p class="price--old">$@(product.Price*2)</p>
+					<p class="price--old">$@(product.Price * 2)</p>
 				</div>
 				<div class="view">
 					<button type="button" onclick="window.location.href='/Product/Detail?Id=@product.Id'">View</button>
@@ -68,3 +77,4 @@
 
 	</div>
 </div>
+

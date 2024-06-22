@@ -1,7 +1,7 @@
 ﻿@inject DataAccessLayer.ApplicationDbContext DbContext
 
 @{
-	int? accountID = Context.Session.GetInt32("accountid");
+	int? accountID = Context.Session.GetInt32("accountId");
 	var account = DbContext.Account.FirstOrDefault(x => x.Id == accountID);
 	ViewData["ListCategory"] = DbContext.Category.ToList();
 
@@ -43,19 +43,16 @@
 								</ul>
 							</li>
 							<li><a asp-action="Index" asp-controller="Home">Home</a></li>
-							<li><a asp-action="contact" asp-controller="Home">Contact</a></li>
-							<li><a asp-action="aboutus" asp-controller="Home">About us</a></li>
-							<li><a asp-action="feedback" asp-controller="feedback">FeedBack</a></li>
+							<li><a asp-action="Contact" asp-controller="Home">Contact</a></li>
+							<li><a asp-action="About" asp-controller="Home">About us</a></li>
+							<li><a asp-action="Feedback" asp-controller="Home">FeedBack</a></li>
 						</ul>
 					</nav>
 				</div>
 
 				<div class="cart-container">
-					<div class="icon-cart">
-						<i class="fa-solid fa-cart-shopping"></i>
-					</div>
 					<div class="btn-Login">
-						<Button onclick="window.location.href='/Auth/Login'" class="Login">Login</Button>
+						<button onclick="window.location.href='/Auth/Login'" class="Login">Login</button>
 					</div>
 				</div>
 			</div>
@@ -82,20 +79,19 @@
 									@foreach (var category in ViewData["ListCategory"] as List<Category>)
 									{
 										<li><a href="/Product/Category?CategoryName=@category.Name">@category.Name</a></li>
-
 									}
 								</ul>
 							</li>
 							<li><a asp-action="Index" asp-controller="Home">Home</a></li>
-							<li><a asp-action="contact" asp-controller="Home">Contact</a></li>
-							<li><a asp-action="aboutus" asp-controller="Home">About us</a></li>
-							<li><a asp-action="feedback" asp-controller="feedback">FeedBack</a></li>
+							<li><a asp-action="Contact" asp-controller="Home">Contact</a></li>
+							<li><a asp-action="About" asp-controller="Home">About us</a></li>
+							<li><a asp-action="Feedback" asp-controller="Home">FeedBack</a></li>
 						</ul>
 					</nav>
 				</div>
 
 				<div class="cart-container">
-					<div class="icon-cart">
+					<div class="icon-cart" onclick="window.location.href='/Order'">
 						<i class="fa-solid fa-cart-shopping"></i>
 					</div>
 					<div class="btn-Login">
@@ -108,7 +104,7 @@
 								<ul class="subnav-profile">
 									<li><a asp-action="Profile" asp-controller="Account">Profile</a> </li>
 									<li><a href="#">History Order</a></li>
-									<li><a href="#">My FeedBack</a></li>
+									<li><a asp-action="MyFeedback" asp-controller="Account">My FeedBack</a></li>
 									<li><a href="#">Change Password</a> </li>
 									<li><a asp-action="Logout" asp-controller="Auth">Logout</a></li>
 								</ul>

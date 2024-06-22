@@ -1,9 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccessLayer.DAO;
+using DataAccessLayer.Models;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc;
+using Utilites;
+using Utilities;
 
 namespace SU24_PRN212_SE1717_Group3.Controllers
 {
-	public class HomeController : Controller
+	public class HomeController(AccountDAO accountDAO, FeedbackDAO feedbackDAO) : Controller
 	{
+		IEmailSender emailSender = new EmailSender();
+
 		public IActionResult Index()
 		{
 			return View();
@@ -15,6 +22,28 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
 			return View();
 		}
 
+		[HttpPost]
+		public async Task<IActionResult> Contact(string name, string email, string phone, string message, IFormFile img)
+		{
+			var account = await accountDAO.GetAccountByEmail(email);
+			if (account == null)
+			{
+				ViewData["Error"] = "We cant support user that is not in our system. Please sign up";
+			}
+			else
+			{
+				string html = "<html>" +
+					"Name: " + name +
+					"<br/>Email: " + email +
+					"<br/>Phone: " + phone +
+					"<br/>" + message +
+					"</html>";
+				((EmailSender)emailSender).SendEmailAsync("DuyLPCE181153@fpt.edu.vn", "Email from " + email, html, ImgUtil.ConvertIFromFileToByte(img));
+			}
+			return View();
+
+		}
+
 		[HttpGet]
 		public IActionResult About()
 		{
@@ -22,11 +51,21 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Feedback()
+		public async Task<IActionResult> Feedback()
 		{
-			return View();
+			List<GeneralFeedback> ListFeedback = await feedbackDAO.GetAllFeedback();
+			return View(ListFeedback);
 		}
 
-
+		[HttpPost]
+		public async Task<IActionResult> Feedback(string comment)
+		{
+			var account = await accountDAO.GetAccountById(HttpContext.Session.GetInt32("accountId"));
+			if (account == null) {
+				return RedirectToAction("Login", "Auth");
+			}
+			await feedbackDAO.AddFeedback(account, comment);
+			return RedirectToAction("Feedback");
+		}
 	}
 }

@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+.detail-container {
+    padding: 0 5%;
+    margin-top: 2%;
+}
+
 .navar {
     display: flex;
     justify-content: space-between;
@@ -53,8 +58,9 @@
 }
 
 .cart-total {
-    width: 30%;
+    width: 20%;
     display: flex;
+    font-size: 2rem;
     align-items: center;
     background: #d9d9d9;
     border-radius: 7px;
@@ -85,14 +91,6 @@
 }
 
 }
-}
-
-.button-tru:hover {
-    border-radius: 7px 0 0 7px;
-}
-
-.button-plus:hover {
-    border-radius: 0 7px 7px 0;
 }
 
 .add {
@@ -157,11 +155,12 @@
 
 .Product--image {
     width: 90%;
-    padding-left: 5%;
     & img
 
 {
     width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
 }
 
 }
@@ -203,7 +202,6 @@
 
 & button:hover {
     transition: 0.2s;
-    border: #000 solid 4px;
     background-color: #ac4e4e;
     color: white;
 }

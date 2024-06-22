@@ -1,5 +1,7 @@
 using DataAccessLayer.DAO;
 using DataAccessLayer;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +10,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>();
 builder.Services.AddSession();
 builder.Services.AddScoped<AuthDao>();
+builder.Services.AddScoped<OrderDAO>();
 builder.Services.AddScoped<AccountDAO>();
 builder.Services.AddScoped<ProductDAO>();
+builder.Services.AddScoped<FeedbackDAO>();
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddRequestDecompression();
 
 var app = builder.Build();
