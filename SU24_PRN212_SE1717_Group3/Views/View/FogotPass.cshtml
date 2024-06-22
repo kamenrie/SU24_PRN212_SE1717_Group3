@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<link href="~/css/FogotPass.css" rel="stylesheet" />
+
+<body>
+    <div class="container">
+        <form id="firstForm" >
+            <h2>Forgot Password</h2>
+            <div class="inputBox">
+                <input name="email" id="emailInput" type="text" placeholder="Enter Your Email..." required />
+            </div>
+            <div class="inputBox">
+                <input type="submit" value="Get OTP" />
+            </div>
+        </form>
+
+        <form id="secondForm"  method="post">
+            <h2>OTP Validate</h2>
+            <div class="inputBox">
+                <input name="email" id="hiddenEmailInput" type="hidden" value="" />
+                <input name="otp" type="text" placeholder="Enter Your OTP..." />
+            </div>
+            <div class="inputBox">
+                <input type="submit" value="Submit" />
+            </div>
+        </form>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+   <script src="~/js/FogotPass.js"></script>

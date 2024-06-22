@@ -1,0 +1,97 @@
+﻿body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('../img/forgotPass.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    transition: 0.5s;
+}
+
+body.otp::before {
+    background: url('../img/otp.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+
+.container {
+    position: relative;
+    width: 50%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+    transition: 0.5s;
+    overflow: hidden;
+    margin: 10% auto;
+    backdrop-filter: blur(20px);
+}
+
+    .container form {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        padding: 1%;
+    }
+
+        .container form h2 {
+            position: relative;
+            color: #fff;
+            font-size: 2.5em;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .container form .inputBox {
+            margin: 2%;
+            position: relative;
+            width: 70%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .container form .inputBox input {
+                width: 100%;
+                outline: none;
+                border: 1px solid rgba(255,255,255,0.25);
+                background: rgba(0,0,0,0.15);
+                padding: 6px 15px;
+                border-radius: 10px;
+                font-size: 0.85rem;
+                color: #fff;
+                padding: 3%;
+            }
+
+                .container form .inputBox input::placeholder {
+                    color: rgba(255,255,255,0.5);
+                }
+
+                .container form .inputBox input[type="submit"] {
+                    background: #2196f3;
+                    font-weight: 500;
+                    cursor: pointer;
+                }
+
+body.otp .container form#firstForm {
+    display: none;
+}
+
+.container form#secondForm {
+    opacity: 0;
+    height: 0;
+    width: 0;
+    transition: opacity 1s, height 1s, width 1s;
+}
+
+body.otp .container form#secondForm {
+    opacity: 1;
+    height: auto;
+    width: auto;
+}
