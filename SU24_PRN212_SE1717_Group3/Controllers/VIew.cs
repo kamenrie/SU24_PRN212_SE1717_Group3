@@ -34,5 +34,10 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
         {
             return View();
         }
+
+        public IActionResult FogotPass()
+        {
+            return View();
+        }
     }
 }
