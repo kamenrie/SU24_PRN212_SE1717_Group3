@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using DataAccessLayer.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using SU24_PRN212_SE1717_Group3.DataAccess;
-using SU24_PRN212_SE1717_Group3.Models;
 using Utilites;
 
 
-namespace SU24_PRN212_SE1717_Group3.DAO
+namespace DataAccessLayer.DAO
 {
 	public class ProductDAO(ApplicationDbContext DbContext)
 	{
@@ -22,12 +20,24 @@ namespace SU24_PRN212_SE1717_Group3.DAO
 			return listProduct;
 		}
 
-		public async Task<List<Product>> GetAllProductBySearchName(string name)
+		public async Task<List<Product>> GetAllProductBySearchName(string Name)
 		{
 			var listProduct = await DbContext.Product
 											 .Include(x => x.Category)
 											 .Include(x => x.Stock)
-											 .Where(x => x.Name.Contains(name))
+											 .Where(x => x.Name.Contains(Name))
+											 .OrderByDescending(x => x.Id)
+											 .ToListAsync();
+
+			listProduct.ForEach(product => { product.Image = ImgUtil.Decompress(product.Image); });
+			return listProduct;
+		}
+		public async Task<List<Product>> GetAllProductByCategoryName(string CategoryName)
+		{
+			var listProduct = await DbContext.Product
+											 .Include(x => x.Category)
+											 .Include(x => x.Stock)
+											 .Where(x => x.Category.Name.Equals(CategoryName))
 											 .OrderByDescending(x => x.Id)
 											 .ToListAsync();
 
@@ -42,12 +52,7 @@ namespace SU24_PRN212_SE1717_Group3.DAO
 									 .Include(x => x.Shop)
 									 .Include(x => x.Stock)
 									 .FirstOrDefaultAsync(x => x.Id == id);
-
-			if (pro != null)
-			{
-				pro.Image = ImgUtil.Decompress(pro.Image);
-
-			}
+			pro.Image = ImgUtil.Decompress(pro.Image);
 			return pro;
 		}
 
@@ -89,7 +94,7 @@ namespace SU24_PRN212_SE1717_Group3.DAO
 			var Shop = await DbContext.Shop.FirstOrDefaultAsync(x => x.Id == shopId);
 			if (pro != null)
 			{
-				pro.Image = ImgUtil.Compress(ImgUtil.ConvertIFormFileToByte(img));
+				pro.Image = ImgUtil.Compress(img);
 				pro.Stock = stock;
 				pro.Category = category;
 				pro.Shop = Shop;
@@ -108,7 +113,7 @@ namespace SU24_PRN212_SE1717_Group3.DAO
 			product.Name = pro.Name;
 			product.Description = pro.Description;
 			product.Price = pro.Price;
-			product.Image = ImgUtil.Compress(ImgUtil.ConvertIFormFileToByte(img)) ?? product.Image;
+			product.Image = ImgUtil.Compress(img) ?? product.Image;
 			product.Category = catename;
 			product.Stock.Quantity = quan;
 			product.Stock.LastEditedDate = DateTime.Now;

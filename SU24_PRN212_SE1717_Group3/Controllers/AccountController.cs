@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SU24_PRN212_SE1717_Group3.Dao;
-using SU24_PRN212_SE1717_Group3.Models;
+using DataAccessLayer.DAO;
+using DataAccessLayer.Models;
 
 namespace SU24_PRN212_SE1717_Group3.Controllers
 {

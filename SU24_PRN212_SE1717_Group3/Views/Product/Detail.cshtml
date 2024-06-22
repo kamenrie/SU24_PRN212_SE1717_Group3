@@ -1,0 +1,70 @@
+﻿@model Product
+<link href="~/css/ProductDetail.css" rel="stylesheet" />
+
+<div class="cart-container">
+	<div class="navar">
+		<div class="cart-img">
+			<img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Image)" alt="" />
+		</div>
+		<div class="cart-infor">
+			<div class="toppic">
+				<h2>@Model.Name</h2>
+			</div>
+			<div class="price">
+				<div class="price-new">
+					<p>$@Model.Price</p>
+				</div>
+				<div class="price-old">
+					<p>$@(Model.Price * 2)</p>
+				</div>
+			</div>
+			<form asp-controller="Order" asp-action="Add" class="banner">
+				<div class="cart-total">
+					<input type="number" name="quantity" value="1" min="1" max="@Model.Stock.Quantity" />
+				</div>
+				<div class="add">
+					<button type="submit">Add To Cart</button>
+				</div>
+			</form>
+
+			<div class="product-category">
+				<p>@Model.Category.Name</p>
+			</div>
+			<div class="description">
+				<p>
+					@Model.Description
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="similar-product">
+		<h2>Similar product</h2>
+	</div>
+	<div class="group-product">
+		@foreach (var product in ViewData["ListSimilarProduct"] as List<Product>)
+		{
+			<div class="product">
+				<div class="product--banner">
+					<div class="Product--image">
+						<img src="data:image/jpeg;base64, @Convert.ToBase64String(product.Image)" alt="" />
+					</div>
+					<div class="category">
+						<p>@product.Category.Name</p>
+					</div>
+				</div>
+				<div class="product--name">
+					<p>@product.Name</p>
+				</div>
+				<div class="product--price">
+					<p class="price--new">$@product.Price</p>
+					<p class="price--old">$@(product.Price*2)</p>
+				</div>
+				<div class="view">
+					<button type="button" onclick="window.location.href='/Product/Detail?Id=@product.Id'">View</button>
+				</div>
+			</div>
+		}
+
+	</div>
+</div>

@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using SU24_PRN212_SE1717_Group3.Models;
-namespace SU24_PRN212_SE1717_Group3.DataAccess
+using DataAccessLayer.Models;
+namespace DataAccessLayer
 {
     public class ApplicationDbContext: DbContext
     {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace SU24_PRN212_SE1717_Group3.Models
+namespace DataAccessLayer.Models
 {
     [Table("Product")]
     public class Product

@@ -1,4 +1,8 @@
-﻿.category-list {
+﻿.product-list {
+    padding: 5%;
+}
+
+.category-list {
     display: flex;
     justify-content: space-between;
     padding: 0 20%;
@@ -39,10 +43,12 @@
 
 .group-product {
     display: flex;
+    flex-wrap: wrap;
     padding: 1% 0;
 }
 
 .product {
+    margin-top: 5%;
     width: 25%;
 }
 
@@ -60,18 +66,20 @@
 
 .Product--image {
     width: 90%;
-    padding-left: 5%;
-    & img
+    border: 1px solid #000;
 
+    & img
 {
     width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 
 }
 
 .category {
     position: absolute;
-    width: 100%;
+    width: 90%;
     text-align: center;
     color: white;
     bottom: 0;
@@ -79,6 +87,10 @@
 
 {
     width: 100%;
+    font-size: 1.5rem;
+    color: black;
+    filter: drop-shadow(#fff 0rem 0rem 2px);
+    text-shadow: 0 0 2px #fff;
 }
 
 }
@@ -106,7 +118,6 @@
 
 & button:hover {
     transition: 0.2s;
-    border: #000 solid 4px;
     background-color: #ac4e4e;
     color: white;
 }

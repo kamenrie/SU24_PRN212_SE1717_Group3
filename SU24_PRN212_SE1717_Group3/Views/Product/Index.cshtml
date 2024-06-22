@@ -1,0 +1,59 @@
+﻿@model List<DataAccessLayer.Models.Product>
+@inject DataAccessLayer.ApplicationDbContext DbContext
+@{
+	int CurrentPage = Convert.ToInt32(ViewData["CurrentPage"] ?? 0);
+	int EndPage = Convert.ToInt32(ViewData["EndPage"] ?? 0);
+	ViewData["ListCategory"] = DbContext.Category.ToList();
+}
+<link rel="stylesheet" href="~/css/Product.css" />
+<div class="product-list">
+	<div class="category-list">
+		<div class="category-img" onclick="window.location.href='/Product'">
+			<img src="Product.jpg" alt="" />
+			<p>All product</p>
+		</div>
+		@foreach (var category in ViewData["ListCategory"] as List<Category>)
+		{
+			<div class="category-img" onclick="window.location.href=`/Product/Category?CategoryName=@category.Name`">
+				<img src="@(category.Name).jpg" />
+				<p>@category.Name</p>
+			</div>
+		}
+	</div>
+	<div class="group-product">
+		@foreach (var product in Model)
+		{
+			<div class="product">
+				<div class="product--banner">
+					<div class="Product--image">
+						<img src="data:image/jpeg;base64, @Convert.ToBase64String(product.Image)" />
+					</div>
+					<div class="category">
+						<p>@product.Category.Name</p>
+					</div>
+				</div>
+				<div class="product--name">
+					<p>@product.Name</p>
+				</div>
+				<div class="product--price">
+					<p class="price--new">$@product.Price</p>
+					<p class="price--old">$@(product.Price * 2)</p>
+				</div>
+				<div class="view">
+					<button type="button" onclick="window.location.href='/Product/Detail?Id=@product.Id'">View</button>
+				</div>
+			</div>
+		}
+	</div>
+
+	<div class="pagination">
+		<button @(CurrentPage <= 1 ? "disabled" : "") onclick="window.location.href=`/Product/@ViewData["Access"]CurrentPage=@(CurrentPage - 1)`"><i class="fa-solid fa-chevron-left"></i> </button>
+		@for (int i = 1; i <= EndPage; i++)
+		{
+			<button @(CurrentPage == i ? "disabled" : "") onclick="window.location.href=`/Product/@ViewData["Access"]CurrentPage=@i`">@i</button>
+		}
+		<button @(CurrentPage >= EndPage ? "disabled" : "") onclick="window.location.href=`/Product/@ViewData["Access"]CurrentPage=@(CurrentPage + 1)`"><i class="fa-solid fa-angle-right"></i></button>
+	</div>
+</div>
+
+
