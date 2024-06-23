@@ -7,6 +7,10 @@ namespace Utilites
 	{
 
 		public static byte[] ConvertIFromFileToByte(IFormFile data) {
+			if (data == null)
+			{
+				return null;
+			}
 			byte[] bytes;
 			using (var stream = data.OpenReadStream())
 			{

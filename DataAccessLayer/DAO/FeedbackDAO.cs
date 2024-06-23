@@ -16,6 +16,7 @@ namespace DataAccessLayer.DAO
 			var ListFeedback = await DbContext.GeneralFeedback
 												.Include(x => x.Account)
 												.ThenInclude(x => x.Profile)
+												.OrderByDescending(x => x.Id)
 												.ToListAsync();
 			ListFeedback.ForEach(Feedback => { Feedback.Account.Profile.Image = ImgUtil.Decompress(Feedback.Account.Profile.Image); });
 			return ListFeedback;
