@@ -1,0 +1,72 @@
+﻿@model ShippingInformation
+@{
+	var Account = ViewData["Account"] as Account;
+	var Order = ViewData["Order"] as Order;
+	var ListOrderDetail = ViewData["ListOrderDetail"] as List<OrderDetail>;
+	var ListDiscount = ViewData["ListDiscount"] as List<Discount>;
+	var ListDelivery = ViewData["ListDelivery"] as List<Delivery>;
+}
+<link href="~/css/Checkout.css" rel="stylesheet" />
+
+<body>
+	<div class="container">
+		<div class="main-title">
+			<h1>List Product In Cart</h1>
+		</div>
+		<div class="content">
+			<div class="cart">
+				<h2>Products in Cart</h2>
+				<div class="product-list">
+					@foreach (var orderdetail in ListOrderDetail)
+					{
+						<div class="product-item">
+							<img src="data:image/jpeg;base64, @Convert.ToBase64String(orderdetail.Product.Image)">
+							<div class="product-info">
+								<p>@orderdetail.Product.Name</p>
+								<p>Quantity: @orderdetail.Amount</p>
+								<p>Price: $@orderdetail.Subtotal</p>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+			<div class="checkout">
+				<h2>Checkout</h2>
+				<form asp-controller="Order" asp-action="Checkout" method="post">
+					<label for="fullname">Full Name:</label>
+					<input type="text" id="fullname" asp-for="RecipientName" value="@Account.Profile.Name" required>
+
+					<label for="phone">Phone:</label>
+					<input type="text" id="phone" asp-for="Phone" value="@Account.Profile.Phone" required>
+
+					<label for="address">Address:</label>
+					<input type="text" id="address" asp-for="Address" value="@Account.Profile.Address" required>
+
+					<label for="delivery">Delivery:</label>
+					<select id="delivery" name="deliveryId">
+						@foreach (var delivery in ListDelivery)
+						{
+							<option value="@delivery.Id">@delivery.Type - $@delivery.Price (Time: @delivery.Day Day)</option>
+						}
+					</select>
+
+					<label for="discount">Discount:</label>
+					<select id="discount" name="discountId">
+						@foreach (var discount in ListDiscount)
+						{
+							<option value="@discount.Id" style="font-size:1.5rem">@discount.Name - @discount.Percent% (Remain: @discount.Quantity)</option>
+						}
+					</select>
+
+
+					<div class="totals">
+						<p>Total Quantity: @Order.Quantity</p>
+						<p>Total Price: $@Order.Total</p>
+					</div>
+
+					<button class="button-checkout" type="submit">Check Out</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>

@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.DAO;
+using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -99,5 +100,51 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
 			return RedirectToAction("Index");
 		}
 
+		[HttpGet]
+		public async Task<IActionResult> Checkout()
+		{
+			var account = await accountDAO.GetAccountById(HttpContext.Session.GetInt32("accountId"));
+			if (account == null)
+			{
+				return RedirectToAction("Login", "Auth");
+			}
+
+			var Order = await orderDAO.GetOrderByAccount(account);
+			if (Order == null || Order.Quantity == 0)
+			{
+				return RedirectToAction("Index");
+			}
+
+			var ListOrderDetail = await orderDAO.GetAllOrderDetailByOrder(Order);
+			var ListDiscount = await orderDAO.GetUnusedDiscountByAccount(account);
+			var ListDelivery = await orderDAO.GetAllDelivery();
+
+			ViewData["Order"] = Order;
+			ViewData["Account"] = account;
+			ViewData["ListOrderDetail"] = ListOrderDetail;
+			ViewData["ListDiscount"] = ListDiscount;
+			ViewData["ListDelivery"] = ListDelivery;
+			return View();
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Checkout(ShippingInformation shipping, int deliveryId, int discountId)
+		{
+			var account = await accountDAO.GetAccountById(HttpContext.Session.GetInt32("accountId"));
+			if (account == null)
+			{
+				return RedirectToAction("Login", "Auth");
+			}
+
+			if (shipping == null)
+			{
+				return RedirectToAction("Checkout");
+			}
+			var Delivery = await orderDAO.GetDeliveryById(deliveryId);
+			var Discount = await orderDAO.GetDiscountById(discountId);
+			var Order = await orderDAO.GetOrderByAccount(account);
+			await orderDAO.Checkout(Order, shipping, Delivery, Discount);
+			return RedirectToAction("Index");
+		}
 	}
 }

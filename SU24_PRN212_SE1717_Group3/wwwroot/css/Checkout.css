@@ -1,26 +1,4 @@
-﻿body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Center the content vertically */
-    min-height: 100vh;
-    background: url('img/nenlogo.png') no-repeat center center fixed;
-    background-size: cover;
-}
-
-.container {
-    width: 80%;
-    background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent background */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center the content horizontally within the container */
-    padding-bottom: 20px; /* Add some padding to the bottom for better spacing */
-}
-
+﻿
 .main-title {
     text-align: center;
     background-color: rgba(255, 255, 255, 0.7); /* Match container background */
@@ -96,25 +74,20 @@ input, select {
         margin: 5px 0;
     }
 
-button {
-    padding: 8px 14px; /* Adjusted padding */
+.button-checkout {
+    padding: 15px 20px; /* Chỉnh lại padding */
+    border-radius: 25px; /* Giảm border radius */
+    align-self: center;
     margin-top: 20px;
     background-color: #28a745;
     color: #fff;
     border: none;
-    border-radius: 3px; /* Decreased border radius */
     cursor: pointer;
     font-size: 14px;
-    min-width: 50px; /* Ensures the button has a minimum width */
+    width: 50%;
 }
 
-    button.checkout {
-        padding: 15px 20px; /* Chỉnh lại padding */
-        border-radius: 25px; /* Giảm border radius */
-        align-self: center;
-    }
 
-
-    button:hover {
-        background-color: #218838;
-    }
+        .button-checkout:hover {
+            background-color: #218838;
+        }
