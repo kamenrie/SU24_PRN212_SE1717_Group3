@@ -47,26 +47,27 @@ namespace DataAccessLayer.DAO
 			ListOrderDetail.ForEach(orderDetail => orderDetail.Product.Image = ImgUtil.Decompress(orderDetail.Product.Image));
 			return ListOrderDetail;
 		}
-		public async Task<List<OrderDetail>> GetAllOrderDetailByOrderIdAndProductId(int orderId, int productId)
+		public List<OrderDetail> GetAllOrderDetailByOrderIdAndProductId(int orderId, int productId)
 		{
-			var ListOrderDetail = await DbContext.OrderDetail
+			var ListOrderDetail = DbContext.OrderDetail
 												 .Include(x => x.Order)
 												 .Include(x => x.Product).Include(x => x.Product.Stock)
 												 .Include(x => x.Size)
 												 .Where(x => x.Order.Id == orderId && x.Product.Id == productId)
-												 .ToListAsync();
+												 .ToList();
 			return ListOrderDetail;
 		}
 
-		public async Task<List<OrderDetailDTO>> GetAllOrderDetailInCartByProductExceedingStock(Product product)
+		public List<OrderDetailDTO> GetAllOrderDetailInCartByProductExceedingStock(Product product)
 		{
-			var ListOrderDetail = await DbContext.OrderDetail
+			int? StockQuantity = product.Stock.Quantity;
+			var ListOrderDetail = DbContext.OrderDetail
 												 .Include(x => x.Order).ThenInclude(x => x.Status)
 												 .Include(x => x.Product).ThenInclude(x => x.Stock)
 												 .Where(x => x.Order.Status.Id == 1
 														  && x.Product == product)
-												 .GroupBy(x => new { x.ProductId, x.OrderId, x.Product.Stock.Quantity })
-												 .Where(x => x.Sum(y => y.Amount) > x.Key.Quantity)
+												 .GroupBy(x => new { x.ProductId, x.OrderId })
+												 .Where(x => x.Sum(y => y.Amount) > StockQuantity)
 												 .Select(x =>
 															 new OrderDetailDTO
 															 {
@@ -74,7 +75,7 @@ namespace DataAccessLayer.DAO
 																 ProductId = x.Key.ProductId,
 																 TotalProduct = x.Count()
 															 }
-												 ).ToListAsync();
+												 ).ToList();
 			return ListOrderDetail;
 		}
 
@@ -133,17 +134,24 @@ namespace DataAccessLayer.DAO
 
 		public async Task Checkout(Order order, ShippingInformation shipping, Delivery delivery, Discount discount)
 		{
+			double? DiscountPercent = 0;
+			if (discount != null)
+			{
+				order.Discount = discount;
+				order.Discount.Quantity--;
+				DiscountPercent = discount.Percent;
+				DbContext.MyDiscount.Add(new MyDiscount { Discount = order.Discount, Account = order.Account });
+			}
 			shipping.Delivery = delivery;
 			await DbContext.ShippingInformation.AddAsync(shipping);
 			order.ShippingInformation = shipping;
-			order.Discount = discount;
 			order.OrderDate = DateTime.Now;
 			order.Status = await DbContext.Status.FirstOrDefaultAsync(x => x.Id == 2);
 			UpdateOrder(order,
 						order.Quantity,
-						order.Total * (1 - (discount.Percent / 100)) + delivery.Price);
-			await DbContext.SaveChangesAsync();
-			AfterCheckout(order);
+						order.Total * (1 - (DiscountPercent / 100)) + delivery.Price);
+			await AfterCheckout(order);
+			DbContext.SaveChanges();
 		}
 
 		public async Task AfterCheckout(Order order)
@@ -155,11 +163,11 @@ namespace DataAccessLayer.DAO
 				DbContext.Stock.Update(orderDetail.Product.Stock);
 
 				var stockQuantity = orderDetail.Product.Stock.Quantity;
-				var ListOrderDetailExceedStock = await GetAllOrderDetailInCartByProductExceedingStock(orderDetail.Product);
-				ListOrderDetailExceedStock.ForEach(async orderDetailExceedStock =>
+				var ListOrderDetailExceedStock = GetAllOrderDetailInCartByProductExceedingStock(orderDetail.Product);
+				ListOrderDetailExceedStock.ForEach(orderDetailExceedStock =>
 				{
-					var CovertedListOrderDetailExceedStock = await GetAllOrderDetailByOrderIdAndProductId(orderDetailExceedStock.OrderId,
-																										   orderDetailExceedStock.ProductId);
+					var CovertedListOrderDetailExceedStock = GetAllOrderDetailByOrderIdAndProductId(orderDetailExceedStock.OrderId,
+																									orderDetailExceedStock.ProductId);
 					CovertedListOrderDetailExceedStock.ForEach(async convertedOrderDetailExceedStock =>
 					{
 						if (stockQuantity == 0 || stockQuantity < orderDetailExceedStock.TotalProduct)
@@ -174,7 +182,6 @@ namespace DataAccessLayer.DAO
 					});
 				});
 			});
-			await DbContext.SaveChangesAsync();
 		}
 
 		public async Task<List<Delivery>> GetAllDelivery()
