@@ -32,7 +32,7 @@ namespace DataAccessLayer.DAO
 
 		public async Task<List<OrderDetail>> GetAllOrderDetailByOrder(Order order)
 		{
-			var ListOrderDetail = await DbContext.Orderdetail
+			var ListOrderDetail = await DbContext.OrderDetail
 												 .Include(x => x.Order)
 												 .Include(x => x.Product).Include(x => x.Product.Category).Include(x => x.Product.Stock)
 												 .Include(x => x.Size)
@@ -43,7 +43,7 @@ namespace DataAccessLayer.DAO
 
 		public async Task<OrderDetail> GetOrderDetailByOrderAndProductAndSize(Order order, Product product, Size size)
 		{
-			var orderDetail = await DbContext.Orderdetail
+			var orderDetail = await DbContext.OrderDetail
 				.Include(x => x.Order)
 				.Include(x => x.Product)
 				.Include(x => x.Size)
@@ -64,7 +64,7 @@ namespace DataAccessLayer.DAO
 				Subtotal = amount * product.Price
 			};
 
-			await DbContext.Orderdetail.AddAsync(orderDetail);
+			await DbContext.OrderDetail.AddAsync(orderDetail);
 			await UpdateOrder(order,
 							  order.Quantity + orderDetail.Amount,
 							  order.Total + orderDetail.Subtotal);
@@ -73,7 +73,7 @@ namespace DataAccessLayer.DAO
 
 		public async Task DeleteOrderDetail(OrderDetail orderDetail)
 		{
-			DbContext.Orderdetail.Remove(orderDetail);
+			DbContext.OrderDetail.Remove(orderDetail);
 			await UpdateOrder(orderDetail.Order,
 							  orderDetail.Order.Quantity - orderDetail.Amount,
 							  orderDetail.Order.Total - orderDetail.Subtotal);
@@ -90,7 +90,7 @@ namespace DataAccessLayer.DAO
 
 			orderDetail.Amount = amount;
 			orderDetail.Subtotal = newSubtotal;
-			DbContext.Orderdetail.Update(orderDetail);
+			DbContext.OrderDetail.Update(orderDetail);
 			await DbContext.SaveChangesAsync();
 		}
 

@@ -1,5 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using DataAccessLayer.Models;
 namespace DataAccessLayer
 {
@@ -31,17 +30,12 @@ namespace DataAccessLayer
            
         }
 
-        public DbSet<OrderDetail> Orderdetail { get; set; }
+        public DbSet<OrderDetail> OrderDetail { get; set; }
 
         public DbSet<Stock> Stock { get; set; }  
 
-        public DbSet<MyDiscount> Mydiscount { get; set; }
+        public DbSet<MyDiscount> MyDiscount { get; set; }
 
         public DbSet<Size> Size { get; set; }
-
-        
-
-       
-
     }
 }
