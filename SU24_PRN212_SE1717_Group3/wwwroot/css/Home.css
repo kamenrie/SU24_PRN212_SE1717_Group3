@@ -63,6 +63,10 @@ img {
     text-align: center;
 }
 
+.product {
+    width: 25%;
+}
+
 .product--title {
     color: #BB8383;
     text-align: center;
@@ -86,6 +90,8 @@ img {
 
 {
     width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
 }
 
 }

@@ -45,6 +45,33 @@ namespace DataAccessLayer.DAO
 			return listProduct;
 		}
 
+		public async Task<List<Product>> GetTop10MostSoldProduct()
+		{
+			var ListProductId = await DbContext.OrderDetail
+										.Include(x => x.Product)
+										.Include(x => x.Order).ThenInclude(x => x.Status)
+										.Where(x => x.Order.Status.Id == 3)
+										.GroupBy(x => x.ProductId)
+										.OrderByDescending(x => x.Count())
+										.Select(x => x.Key)
+										.Take(10)
+										.ToListAsync();
+			var productTasks = ListProductId.Select(productId => GetProductById(productId)).ToList();
+			var ListProduct = await Task.WhenAll(productTasks);
+			return ListProduct.ToList();
+		}
+
+		public async Task<List<Product>> GetTop4NewProduct()
+		{
+			var ListProduct = await DbContext.Product
+				.Include(x => x.Category)
+				.OrderByDescending(x => x.Id)
+				.Take(4).ToListAsync();
+
+			ListProduct.ForEach(product => { product.Image = ImgUtil.Decompress(product.Image); });
+			return ListProduct;
+		}
+
 		public async Task<Product> GetProductById(int Id)
 		{
 			var pro = await DbContext.Product

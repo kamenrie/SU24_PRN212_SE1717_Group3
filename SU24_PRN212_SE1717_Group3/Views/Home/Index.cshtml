@@ -1,103 +1,100 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
+	var ListTop10MostSold = ViewData["ListTop10MostSold"] as List<Product>;
+	var ListTop4New = ViewData["ListTop4New"] as List<Product>;
 }
 
 <link href="~/css/Home.css" rel="stylesheet" />
 <div class="mohamed--home">
-    <div class="banner--background">
-        <img src="~/img/Banner-Background.png" alt="">
-    </div>
-    <div class="feature--banner">
-        <div class="feature--banner--feature">
-            <i class="fa-solid fa-truck-fast"></i>
-            <div class="feature--banner--feature--content">
-                <p>Free shipping</p>
-                <p>For orders of > $100</p>
-            </div>
-        </div>
-        <div class="feature--banner--feature">
-            <i class="fa-solid fa-gift"></i>
-            <div class="feature--banner--feature--content">
-                <p>Buy two get a discount</p>
-                <p>Up to 10% of the order</p>
-            </div>
-        </div>
-        <div class="feature--banner--feature">
-            <i class="fa-solid fa-medal"></i>
-            <div class="feature--banner--feature--content">
-                <p>High quality products</p>
-                <p>Quality certification</p>
-            </div>
-        </div>
-    </div>
-    <div class="hot--product">
-        <h2 class="product--title">Top 10 hottest products of the week</h2>
-        <div class="product--top">
-            @for (int i = 0; i < 5; i++)
-            {
-                <div class="product">
-                    <div class="product--banner">
-                        <div class="Product--image">
-                            <img src="~/img/Product.jpg" alt="">
-                        </div>
-                        <div class="category">
-                            <p>Category</p>
-                        </div>
-                    </div>
-                    <div class="product--name">
-                        <p>product name</p>
-                    </div>
-                    <div class="product--price">
-                        <p class="price--new">180$</p>
-                        <p class="price--old">190$</p>
-                    </div>
-                    <div class="view">
-                        <button>View</button>
-                    </div>
-                </div>
-            }
+	<div class="banner--background">
+		<img src="~/img/Banner-Background.png" alt="">
+	</div>
+	<div class="feature--banner">
+		<div class="feature--banner--feature">
+			<i class="fa-solid fa-truck-fast"></i>
+			<div class="feature--banner--feature--content">
+				<p>Free shipping</p>
+				<p>For orders of > $100</p>
+			</div>
+		</div>
+		<div class="feature--banner--feature">
+			<i class="fa-solid fa-gift"></i>
+			<div class="feature--banner--feature--content">
+				<p>Buy two get a discount</p>
+				<p>Up to 10% of the order</p>
+			</div>
+		</div>
+		<div class="feature--banner--feature">
+			<i class="fa-solid fa-medal"></i>
+			<div class="feature--banner--feature--content">
+				<p>High quality products</p>
+				<p>Quality certification</p>
+			</div>
+		</div>
+	</div>
+	<div class="hot--product">
+		<h2 class="product--title">Top 10 hottest products of the week</h2>
+		<div class="product--top">
+			@foreach (var product in ListTop10MostSold)
+			{
+				<div class="product">
+					<div class="product--banner">
+						<div class="Product--image">
+							<img src="data:image/*;base64, @Convert.ToBase64String(product.Image)" />
+						</div>
+						<div class="category">
+							<p>@product.Category.Name</p>
+						</div>
+					</div>
+					<div class="product--name">
+						<p>@product.Name</p>
+					</div>
+					<div class="product--price">
+						<p class="price--new">$@product.Price</p>
+						<p class="price--old">$@(product.Price * 2)</p>
+					</div>
+					<div class="view">
+						<button>View</button>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
 
 
-        </div>
-        <button class="button--loadmore">Load more</button>
-    </div>
+	<div class="Maketting">
+		<img src="maketting1.jpg" alt="">
+		<img src="maketting2.jpg" alt="">
+	</div>
 
+	<div class="new--product">
+		<h2 class="product--title">Top 4 newest products</h2>
+		<div class="product--top">
 
-    <div class="Maketting">
-        <img src="maketting1.jpg" alt="">
-        <img src="maketting2.jpg" alt="">
-    </div>
-
-    <div class="new--product">
-        <h2 class="product--title">Top 4 newest products</h2>
-        <div class="product--top">
-
-            @for (int i = 0; i < 5; i++)
-            {
-                <div class="product">
-                    <div class="product--banner">
-                        <div class="Product--image">
-                            <img src="~/img/Product.jpg" alt="">
-                        </div>
-                        <div class="category">
-                            <p>Category</p>
-                        </div>
-                    </div>
-                    <div class="product--name">
-                        <p>product name</p>
-                    </div>
-                    <div class="product--price">
-                        <p class="price--new">180$</p>
-                        <p class="price--old">190$</p>
-                    </div>
-                    <div class="view">
-                        <button>View</button>
-                    </div>
-                </div>
-
-            }
-
-        </div>
-    </div>
+			@foreach (var product in ListTop4New)
+			{
+				<div class="product">
+					<div class="product--banner">
+						<div class="Product--image">
+							<img src="data:image/*;base64, @Convert.ToBase64String(product.Image)" />
+						</div>
+						<div class="category">
+							<p>@product.Category.Name</p>
+						</div>
+					</div>
+					<div class="product--name">
+						<p>@product.Name</p>
+					</div>
+					<div class="product--price">
+						<p class="price--new">$@product.Price</p>
+						<p class="price--old">$@(product.Price * 2)</p>
+					</div>
+					<div class="view">
+						<button>View</button>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
 </div>
 <script src="~/js/Home.js"></script>

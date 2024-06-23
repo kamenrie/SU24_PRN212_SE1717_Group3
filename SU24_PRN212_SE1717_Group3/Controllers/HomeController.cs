@@ -7,12 +7,16 @@ using Utilities;
 
 namespace SU24_PRN212_SE1717_Group3.Controllers
 {
-	public class HomeController(AccountDAO accountDAO, FeedbackDAO feedbackDAO) : Controller
+	public class HomeController(AccountDAO accountDAO, ProductDAO productDAO, FeedbackDAO feedbackDAO) : Controller
 	{
 		IEmailSender emailSender = new EmailSender();
 
-		public IActionResult Index()
+		public async Task<IActionResult> Index()
 		{
+			var ListTop10MostSold = await productDAO.GetTop10MostSoldProduct();
+			ViewData["ListTop10MostSold"] = ListTop10MostSold;
+			var ListTop4New = await productDAO.GetTop4NewProduct();
+			ViewData["ListTop4New"] = ListTop4New;
 			return View();
 		}
 
@@ -61,7 +65,8 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
 		public async Task<IActionResult> Feedback(string comment)
 		{
 			var account = await accountDAO.GetAccountById(HttpContext.Session.GetInt32("accountId"));
-			if (account == null) {
+			if (account == null)
+			{
 				return RedirectToAction("Login", "Auth");
 			}
 			await feedbackDAO.AddFeedback(account, comment);
