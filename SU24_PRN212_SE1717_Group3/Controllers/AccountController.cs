@@ -24,7 +24,7 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
             var account = await accountDAO.GetAccountById(HttpContext.Session.GetInt32("accountId"));
             if (account != null)
             {
-                accountDAO.UpdateProfile(pro, img, account);
+                await accountDAO.UpdateProfile(pro, img, account);
                 return RedirectToAction("Profile");
             }
             return RedirectToAction("Login", "Auth");
