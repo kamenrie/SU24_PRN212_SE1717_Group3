@@ -78,16 +78,14 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
 			var Order = await orderDAO.GetOrderByAccount(account);
 			var product = await productDAO.GetProductById(productId);
 			var size = await orderDAO.GetSizeById(sizeId);
+			var orderDetail = await orderDAO.GetOrderDetailByOrderAndProductAndSize(Order, product, size);
 
 			var ListOrderDetailContainProduct = orderDAO.GetAllOrderDetailByOrderIdAndProductId(Order.Id, product.Id);
+			ListOrderDetailContainProduct.Remove(orderDetail);
 			int? totalAmountOfProduct = 0;
 			ListOrderDetailContainProduct.ForEach(orderDetail => { totalAmountOfProduct += orderDetail.Amount; });
-			if (product.Stock.Quantity <= totalAmountOfProduct)
-			{
-				amount -= 1;
-			}
+			amount = int.Min((int)(product.Stock.Quantity - totalAmountOfProduct), amount);
 
-			var orderDetail = await orderDAO.GetOrderDetailByOrderAndProductAndSize(Order, product, size);
 			if (amount <= 0)
 			{
 				await orderDAO.DeleteOrderDetail(orderDetail);
