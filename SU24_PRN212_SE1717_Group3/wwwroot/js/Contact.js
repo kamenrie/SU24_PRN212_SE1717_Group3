@@ -12,7 +12,3 @@
         preview.style.display = "none";
     }
 }
-
-function submitForm() {
-    event.preventDefault();
-}

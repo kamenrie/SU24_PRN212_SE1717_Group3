@@ -21,5 +21,12 @@ namespace DataAccessLayer.DAO
             DbContext.Account.Add(account);
             await DbContext.SaveChangesAsync(); 
         }
+
+        public void ChangePassword(Account account, string newPassword)
+        {
+            account.Password = newPassword;
+            DbContext.Account.Update(account);
+            DbContext.SaveChanges();
+        }
     }
 }

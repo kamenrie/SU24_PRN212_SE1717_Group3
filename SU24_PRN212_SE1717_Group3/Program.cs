@@ -2,6 +2,8 @@ using DataAccessLayer.DAO;
 using DataAccessLayer;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Utilities;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +17,19 @@ builder.Services.AddScoped<AccountDAO>();
 builder.Services.AddScoped<ProductDAO>();
 builder.Services.AddScoped<FeedbackDAO>();
 builder.Services.AddTransient<IEmailSender, EmailSender>();
-builder.Services.AddRequestDecompression();
+builder.Services
+	.AddAuthentication(options =>
+	{
+		options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+		options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+	})
+	.AddCookie()
+	.AddGoogle(GoogleDefaults.AuthenticationScheme, googleOptions =>
+	{
+		googleOptions.ClientId = "91449811345-vk7d4i3o0k6sijv6hpmqh5dk49letmoc.apps.googleusercontent.com";
+		googleOptions.ClientSecret = "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";
+		googleOptions.SaveTokens = true;
+	});
 
 var app = builder.Build();
 
@@ -26,12 +40,13 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-app.UseRequestDecompression();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseCookiePolicy();
 app.UseRouting();
 app.UseSession();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
