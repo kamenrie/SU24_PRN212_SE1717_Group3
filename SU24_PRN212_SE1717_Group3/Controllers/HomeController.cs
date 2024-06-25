@@ -42,7 +42,7 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
 					"<br/>Phone: " + phone +
 					"<br/>" + message +
 					"</html>";
-				((EmailSender)emailSender).SendEmailAsync("DuyLPCE181153@fpt.edu.vn", "Email from " + email, html, ImgUtil.ConvertIFromFileToByte(img));
+				((EmailSender)emailSender).SendEmailAsync("QuiNHCE171689@fpt.edu.vn", "Email from " + email, html, ImgUtil.ConvertIFromFileToByte(img));
 			}
 			return View();
 
