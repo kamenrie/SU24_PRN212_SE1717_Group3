@@ -157,17 +157,22 @@ namespace DataAccessLayer.DAO
 		public async Task AfterCheckout(Order order)
 		{
 			var ListOrderDetailOfOrder = await GetAllOrderDetailByOrder(order);
-			ListOrderDetailOfOrder.ForEach(async orderDetail =>
+
+			ListOrderDetailOfOrder.ForEach(orderDetail =>
 			{
 				orderDetail.Product.Stock.Quantity -= orderDetail.Amount;
 				DbContext.Stock.Update(orderDetail.Product.Stock);
 
 				var stockQuantity = orderDetail.Product.Stock.Quantity;
-				var ListOrderDetailExceedStock = GetAllOrderDetailInCartByProductExceedingStock(orderDetail.Product);
+
+				List<OrderDetailDTO> ListOrderDetailExceedStock = GetAllOrderDetailInCartByProductExceedingStock(orderDetail.Product);
+
 				ListOrderDetailExceedStock.ForEach(orderDetailExceedStock =>
 				{
-					var CovertedListOrderDetailExceedStock = GetAllOrderDetailByOrderIdAndProductId(orderDetailExceedStock.OrderId,
+
+					List<OrderDetail> CovertedListOrderDetailExceedStock = GetAllOrderDetailByOrderIdAndProductId(orderDetailExceedStock.OrderId,
 																									orderDetailExceedStock.ProductId);
+
 					CovertedListOrderDetailExceedStock.ForEach(async convertedOrderDetailExceedStock =>
 					{
 						if (stockQuantity == 0 || stockQuantity < orderDetailExceedStock.TotalProduct)
@@ -178,7 +183,6 @@ namespace DataAccessLayer.DAO
 						{
 							await UpdateOrderDetail(convertedOrderDetailExceedStock, (int)Math.Floor((double)stockQuantity / orderDetailExceedStock.TotalProduct));
 						}
-
 					});
 				});
 			});

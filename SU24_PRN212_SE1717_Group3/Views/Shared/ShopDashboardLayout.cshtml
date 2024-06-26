@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -6,33 +11,22 @@
     <title>@ViewData["Title"]</title>
     <script src="https://kit.fontawesome.com/31a6f4185b.js" crossorigin="anonymous"></script>
     <link href="~/css/Dashboard.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="container-left">
             <div class="container-left-sidebar">
                 <div class="container-left-sidebar-logo">
-                        <img src="~/img/Logo.png" alt="Mô tả hình ảnh" />
+                    <img src="~/img/Logo.png" />
                 </div>
-                <div class="icon-wrapper" onclick="window.location.href='/ProductManager/Index'">
+                <div class="icon-wrapper" onclick="window.location.href='/ShopOverviewManagement'">
                     <i class="fa-solid fa-list-check fa-fw"></i>
-                    <span>Orderview<br /> Manager</span>
+                    <span>Overview<br /> Manager</span>
                 </div>
-                <div class="icon-wrapper">
+                <div class="icon-wrapper" onclick="window.location.href='/ProductManagement'">
                     <i class="fa-brands fa-product-hunt fa-fw"></i>
                     <span>Product<br /> Manager</span>
-                </div>
-                <div class="icon-wrapper">
-                    <i class="fa-solid fa-paper-plane fa-fw"></i>
-                    <span>Feedback <br />Manager</span>
-                </div>
-                <div class="icon-wrapper">
-                    <i class="fa-solid fa-file-invoice-dollar fa-fw"></i>
-                    <span>Order <br />Manager</span>
-                </div>
-                <div class="icon-wrapper">
-                    <i class="fa-solid fa-file-invoice-dollar fa-fw"></i>
-                    <span>Discount <br />Manager</span>
                 </div>
             </div>
             <button class="button-left-side" onclick="resizeSidebar()">

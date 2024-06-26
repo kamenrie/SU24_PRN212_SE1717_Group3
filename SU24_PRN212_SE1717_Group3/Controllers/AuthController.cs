@@ -34,11 +34,11 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
 			HttpContext.Session.SetInt32("accountId", acc.Id);
 			if (acc.Role.Name == "Admin")
 			{
-				return RedirectToAction("Index", "Home");
+				return RedirectToAction("OverviewManagement", "AdminManagement");
 			}
 			else if (acc.Role.Name == "Shop")
 			{
-				return RedirectToAction("Index", "Home");
+				return RedirectToAction("Index", "ShopOverviewManagement");
 			}
 			else
 			{

@@ -1,0 +1,131 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+	Layout = "~/Views/Shared/ShopDashboardLayout.cshtml";
+	ViewData["Title"] = "Shop Overview Management";
+	var chartProduct = ViewData["ChartProduct"] as List<int>;
+	var chartRevenue = ViewData["ChartRevenue"] as List<double>;
+	var product = ViewData["MostSoldProduct"] as Product;
+}
+
+<link href="~/css/OverviewUser.css" rel="stylesheet" />
+
+<body>
+	<div class="overviewmanagerment">
+		<div class="toppic">
+			<h2>Monitor Health Of Your Business</h2>
+		</div>
+		<div class="product-sold-most">
+			<div class="CONCAC">
+				<div class="sold">
+					<div class="product-text">
+						<p>Product</p>
+						<div class="number">
+							<p>@ViewData["ProductSold"]</p>
+						</div>
+						<div class="registerdate">
+							<p>+@ViewData["ProductSoldLastMonth"] last Month</p>
+						</div>
+					</div>
+					<div class="product-icon">
+						<i class="fa-brands fa-product-hunt"></i>
+					</div>
+				</div>
+				<div class="sold">
+					<div class="revenue-text">
+						<p>Revenue</p>
+						<div class="number">
+							<p>$@ViewData["Revenue"]</p>
+						</div>
+						<div class="registerdate">
+							<p>+ $@ViewData["RevenueLastMonth"] Last Month</p>
+						</div>
+					</div>
+					<div class="revenue-icon">
+						<i class="fa-solid fa-money-bill"></i>
+					</div>
+				</div>
+				<div class="product-sold">
+					<div class="product-sold-top">
+						<div class="sold-text">
+							<h2>Total Product Sold</h2>
+						</div>
+					</div>
+					<div class="body-chart">
+						<div class="chart">
+							@for (int i = 0; i < 12; i++)
+							{
+								<div class="bar" style="height: @(chartProduct[i]/chartProduct.Sum() * 100)%" title="@chartProduct[i]">@((i + 1).ToString("D2"))</div>
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="most-product">
+				<h2>Most sold Product</h2>
+				<img src="data:image/*;base64, @Convert.ToBase64String(product.Image)" alt="" />
+				<p class="kkk">@product.Category.Name</p>
+				<p>@product.Name</p>
+			</div>
+		</div>
+
+		<div class="reveue-picture">
+			<div class="reveu-chart">
+				<h2>Total Revenue</h2>
+				<div class="body-chart">
+					<div class="chart concm">
+						@for (int i = 0; i < 12; i++)
+						{
+							<div class="bar" style="height: @(chartRevenue[i]/chartRevenue.Sum() * 100)%" title="@chartRevenue[i]">@((i + 1).ToString("D2"))</div>
+						}
+					</div>
+				</div>
+			</div>
+			<div class="chart-doughnut">
+				<canvas id="myChart1"></canvas>
+				<canvas id="myChart2"></canvas>
+			</div>
+		</div>
+</body>
+
+<script>
+	const ctx1 = document.getElementById("myChart1").getContext("2d");
+	const ctx2 = document.getElementById("myChart2").getContext("2d");
+
+	new Chart(ctx1, {
+		type: "doughnut",
+		data: {
+			labels: ["Product Sold", "Remain Target"],
+			datasets: [
+				{
+					label: "",
+					data: [@ViewData["ProductSoldThisMonth"], Math.max((100 - @ViewData["ProductSoldThisMonth"]), 0)],
+					backgroundColor: [
+						"rgb(255, 99, 132)",
+						"rgb(100, 100, 100)"
+					],
+					hoverOffset: 10,
+				},
+			],
+		},
+	});
+
+	new Chart(ctx2, {
+		type: "doughnut",
+		data: {
+			labels: ["Revenue", "Remain Target"],
+			datasets: [
+				{
+					label: "",
+					data: [@ViewData["RevenueThisMonth"], Math.max((100 - @ViewData["RevenueThisMonth"]), 0)],
+					backgroundColor: [
+						"rgb(255, 99, 132)",
+						"rgb(100, 100, 100)"
+					],
+					hoverOffset: 4,
+				},
+			],
+		},
+	});
+</script>

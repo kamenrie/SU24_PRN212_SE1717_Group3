@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+    <script src="https://kit.fontawesome.com/31a6f4185b.js" crossorigin="anonymous"></script>
+    <link href="~/css/Dashboard.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="container-left">
+            <div class="container-left-sidebar">
+                <div class="container-left-sidebar-logo">
+                        <img src="~/img/Logo.png" />
+                </div>
+                <div class="icon-wrapper" onclick="window.location.href='/AdminManagement/OverviewManagement'">
+                    <i class="fa-solid fa-list-check fa-fw"></i>
+                    <span>Over<br /> Manager</span>
+                </div>
+                <div class="icon-wrapper" onclick="window.location.href='/AdminManagement/FeedbackManagement'">
+                    <i class="fa-solid fa-paper-plane fa-fw"></i>
+                    <span>Feedback <br />Manager</span>
+                </div>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-file-invoice-dollar fa-fw"></i>
+                    <span>Order <br />Manager</span>
+                </div>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-file-invoice-dollar fa-fw"></i>
+                    <span>Discount <br />Manager</span>
+                </div>
+            </div>
+            <button class="button-left-side" onclick="resizeSidebar()">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="container-right">
+            <div class="container-right-header">@ViewData["Title"]</div>
+            <div class="container-right-body">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/Dashboard.js"></script>
+</body>
+</html>

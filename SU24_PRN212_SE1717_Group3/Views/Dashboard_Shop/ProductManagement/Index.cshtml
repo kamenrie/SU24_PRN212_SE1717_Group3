@@ -2,7 +2,7 @@
 
 @{
 	ViewData["Title"] = "List Product";
-	Layout = "~/Views/Shared/DashboardLayout.cshtml";
+	Layout = "~/Views/Shared/ShopDashboardLayout.cshtml";
 	int CurrentPage = Convert.ToInt32(ViewData["CurrentPage"] ?? 0);
 	int EndPage = Convert.ToInt32(ViewData["EndPage"] ?? 0);
 }
@@ -15,13 +15,13 @@
 	</div>
 	<div class="navbar">
 		<div class="search">
-			<form method="get" asp-controller="ProductManager" asp-action="Search">
+			<form method="get" asp-controller="ProductManagement" asp-action="Search">
 				<input type="text" name="name" placeholder="Search...">
 			</form>
 
 		</div>
 		<div class="add">
-			<button onclick="window.location.href='/ProductManager/Add'">Add</button>
+			<button onclick="window.location.href='/ProductManagement/Add'">Add</button>
 		</div>
 	</div>
 	<table class="table-product">
@@ -53,10 +53,10 @@
 				</td>
 				<td class="product-button">
 					<div class="ground-of-button">
-						<button type="button" class="button-edit" onclick="window.location.href='/ProductManager/Update?Id=@product.Id'">
+						<button type="button" class="button-edit" onclick="window.location.href='/ProductManagement/Update?Id=@product.Id'">
 							Update
 						</button>
-						<button type="button" class="button-delete" onclick="window.location.href='/ProductManager/Delete?Id=@product.Id'">
+						<button type="button" class="button-delete" onclick="window.location.href='/ProductManagement/Delete?Id=@product.Id'">
 							Delete
 						</button>
 					</div>
@@ -67,12 +67,12 @@
 	</table>
 
 	<div class="pagination">
-		<button @(CurrentPage <= 1 ? "disabled" : "") onclick="window.location.href=`/ProductManager/@ViewData["Access"]CurrentPage=@(CurrentPage - 1)`"><i class="fa-solid fa-chevron-left"></i> </button>
+		<button @(CurrentPage <= 1 ? "disabled" : "") onclick="window.location.href=`/ProductManagement/@ViewData["Access"]CurrentPage=@(CurrentPage - 1)`"><i class="fa-solid fa-chevron-left"></i> </button>
 		@for (int i = 1; i <= EndPage; i++)
 		{
-			<button @(CurrentPage == i ? "disabled" : "") onclick="window.location.href=`/ProductManager/@ViewData["Access"]CurrentPage=@i`">@i</button>
+			<button @(CurrentPage == i ? "disabled" : "") onclick="window.location.href=`/ProductManagement/@ViewData["Access"]CurrentPage=@i`">@i</button>
 		}
-		<button @(CurrentPage >= EndPage ? "disabled" : "") onclick="window.location.href=`/ProductManager/@ViewData["Access"]CurrentPage=@(CurrentPage + 1)`"><i class="fa-solid fa-angle-right"></i></button>
+		<button @(CurrentPage >= EndPage ? "disabled" : "") onclick="window.location.href=`/ProductManagement/@ViewData["Access"]CurrentPage=@(CurrentPage + 1)`"><i class="fa-solid fa-angle-right"></i></button>
 	</div>
 </div>
 

@@ -16,6 +16,8 @@ builder.Services.AddScoped<OrderDAO>();
 builder.Services.AddScoped<AccountDAO>();
 builder.Services.AddScoped<ProductDAO>();
 builder.Services.AddScoped<FeedbackDAO>();
+builder.Services.AddScoped<ShopManagementDAO>();
+builder.Services.AddScoped<AdminManagementDAO>();
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services
 	.AddAuthentication(options =>

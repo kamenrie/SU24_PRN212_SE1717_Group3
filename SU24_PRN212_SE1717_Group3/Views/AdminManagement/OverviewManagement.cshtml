@@ -2,6 +2,9 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    Layout = "~/Views/Shared/AdminDashboardLayout.cshtml";
+    ViewData["Title"] = "Admin Overview Management";
+    var account = ViewData["AccountBuyMost"] as Account;
 }
 
 <body>
@@ -13,8 +16,7 @@
                 <div class="user-info">
                     <p class="title">User </p><i class="fa-solid fa-user"></i>
                 </div>
-                <p class="number">100</p>
-                <p class="registerdate">+ 1 Last Month</p>
+                <p class="number">@ViewData["CountUser"]</p>
             </div>
             <div class="overviewManager-top-chart">
                 <canvas id="user-buy-most-chart"></canvas>
@@ -22,7 +24,19 @@
         </div>
         <div class="overviewManager-top-right">
             <h1 class="title">USER BUY MOST</h1>
-            <img src="conmeo.jpg" alt="">
+            @if (account != null)
+            {
+                @if (account.Profile.Image != null)
+                {
+                    <img src="data:image/*;base64, @Convert.ToBase64String(account.Profile.Image)" alt="">
+                }
+                else
+                {
+                    <img src="~/img/account.jpg" alt="">
+                }
+                <p>@account.Username</p>
+            }
+            
         </div>
     </div>
 </body>

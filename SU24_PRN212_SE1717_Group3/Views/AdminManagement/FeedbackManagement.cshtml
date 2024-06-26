@@ -1,0 +1,48 @@
+﻿@model List<GeneralFeedback>
+@{
+	Layout = "~/Views/Shared/AdminDashboardLayout.cshtml";
+	ViewData["Title"] = "Admin Overview Management";
+}
+
+<link href="~/css/FeedbackManager.css" rel="stylesheet" />
+
+<body>
+	@for (int i = 0; i < Model.Count(); i++)
+	{
+		var feedback = Model[i];
+		<div class="feedback">
+			<div class="feedback-user-ava">
+				@if (feedback.Account.Profile.Image != null)
+				{
+					<img src="data:image/jpeg;base64, @Convert.ToBase64String(feedback.Account.Profile.Image)" alt="" />
+				}
+				else
+				{
+					<img src="~/img/account.jpg" />
+				}
+			</div>
+			<div class="feedback-user-content">
+				<div class="feedback-user-content-header">
+					<div class="feedback-user-content-info">
+						<div class="feedback-user-name">@feedback.Account.Username</div>
+						<i class="fa-solid fa-circle"></i>
+						<span id="time-1">@feedback.FeedbackDate</span>
+					</div>
+					<i class="fa-solid fa-x x-btn" onclick="window.location.href='/AdminManagement/IgnoreFeedback?Id=@feedback.Id'"></i>
+				</div>
+
+				<p class="feedback-comment">
+					@feedback.FeedbackText
+				</p>
+				<button class="reply-btn" for="reply" onclick="toggleTextarea(@i)">Reply</button>
+				<form asp-action="FeedbackManagement" class="feedback-reply" id="feedback-reply-@i" style="display: none;">
+					<textarea name="response" id="reply" cols="30" rows="3"></textarea>
+					<input type="hidden" asp-for="@feedback.Id" readonly/>
+					<i class="fa-solid fa-location-arrow fa-rotate-by" style="--fa-rotate-angle: 45deg;" onclick="document.querySelector('#feedback-reply-@i').submit()"></i>
+				</form>
+			</div>
+		</div>
+	}
+</body>
+
+<script src="~/js/feedbackManager.js"></script>
