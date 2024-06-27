@@ -138,8 +138,9 @@ namespace DataAccessLayer.DAO
 			if (discount != null)
 			{
 				order.Discount = discount;
-				order.Discount.Quantity--;
 				DiscountPercent = discount.Percent;
+                discount.Quantity--;
+                DbContext.Discount.Update(discount);
 				DbContext.MyDiscount.Add(new MyDiscount { Discount = order.Discount, Account = order.Account });
 			}
 			shipping.Delivery = delivery;
