@@ -1,0 +1,189 @@
+﻿/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : May 28, 2024, 2:42:38 PM
+    Author     : ADMIN
+*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI';
+}
+
+.historyOrder-container {
+    background: url(../../image/foodBackground.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    min-width: 300px;
+    position: relative;
+}
+
+.historyOrder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 90%;
+    background: #FFF5;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 10px #0005;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.historyOrder-header {
+    width: 100%;
+    background: #0008;
+    color: #fff;
+    padding: 1% 0;
+    text-align: center;
+}
+
+.historyOrder-body {
+    width: 95%;
+    max-height: 80%;
+    margin: 2% auto;
+    border-radius: 8px;
+    overflow: scroll;
+    &::-webkit-scrollbar
+
+{
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+&::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background: #0004;
+}
+
+}
+
+.historyOrder-body-table {
+    border-spacing: 0;
+    min-width: 1000px;
+    & thead
+
+{
+    background: #999;
+}
+
+& tbody .historyOrder-body-table-content {
+    background: #eee;
+    cursor: pointer;
+    &:hover
+
+{
+    background: #ccc;
+}
+
+}
+
+& th,
+td {
+    word-wrap: break-word;
+    text-align: center;
+    padding: 1% 0;
+    height: max-content;
+    overflow: hidden;
+    font-size: 1.125rem;
+}
+
+& th {
+    &:nth-child(1)
+{
+    width: 15%;
+}
+
+&:nth-child(2) {
+    width: 12.5%;
+}
+
+&:nth-child(3) {
+    width: 10%;
+}
+
+&:nth-child(4) {
+    width: 10%;
+}
+
+&:nth-child(5) {
+    width: 10%;
+}
+
+&:nth-child(6) {
+    width: 10%;
+}
+
+&:nth-child(7) {
+    width: 7.5%;
+}
+
+&:nth-child(8) {
+    width: 7.5%;
+}
+
+&:nth-child(9) {
+    width: 7.5%;
+}
+
+&:nth-child(10) {
+    width: 10%;
+}
+
+}
+}
+
+
+.historyOrder-body-table-status {
+
+& .refuse {
+    background: #d893a3;
+    color: #b30021;
+}
+
+& .success {
+    background: #86e49d;
+    color: #006b21;
+}
+
+& .incart {
+    color: #000;
+    background: #fff;
+}
+
+& .wait {
+    color: #fff;
+    background: #2196F3;
+}
+
+& p {
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 15px;
+    padding: 5% 0;
+    margin: 0 auto;
+}
+
+}
+
+
+.historyOrder-body-table-subcontent {
+    background: #FF04;
+    & .historyOrder-body-table-subcontent-image img
+
+{
+    width: 100%;
+    aspect-ratio: 2/1;
+    object-fit: cover;
+}
+}

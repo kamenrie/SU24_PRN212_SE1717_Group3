@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utilites;
 
+#nullable disable
 namespace DataAccessLayer.DAO
 {
     public class AdminManagementDAO(ApplicationDbContext DbContext)
@@ -29,7 +30,8 @@ namespace DataAccessLayer.DAO
                 .Select(x => x.Key.Id)
                 .FirstOrDefault();
             var accountBuyMost = DbContext.Account.Include(x => x.Profile).FirstOrDefault(x => x.Id == accountId);
-            if (accountBuyMost != null) {
+            if (accountBuyMost != null)
+            {
                 accountBuyMost.Profile.Image = ImgUtil.Decompress(accountBuyMost.Profile.Image);
             }
             return accountBuyMost;
@@ -57,11 +59,105 @@ namespace DataAccessLayer.DAO
 
         public void IgnoreFeedback(int Id)
         {
-			var feedback = DbContext.GeneralFeedback.FirstOrDefault(x => x.Id == Id);
+            var feedback = DbContext.GeneralFeedback.FirstOrDefault(x => x.Id == Id);
             feedback.Ignored = true;
-			DbContext.GeneralFeedback.Update(feedback);
+            DbContext.GeneralFeedback.Update(feedback);
             DbContext.SaveChanges();
-		}
+        }
 
-	}
+        public Order GetOrderById(int id)
+        {
+            return DbContext.Order
+                .Include(x => x.Status)
+                .Include(x => x.ShippingInformation).ThenInclude(x => x.Delivery)
+                .Include(x => x.Account)
+                .FirstOrDefault(x => x.Id == id);
+
+        }
+
+        public List<Order> GetAllWaitingOrder()
+        {
+            return DbContext.Order
+                .Include(x => x.Status)
+                .Include(x => x.ShippingInformation)
+                .Include(x => x.Account)
+                .Where(x => x.Status.Id == 2)
+                .ToList();
+        }
+
+        public void AcceptOrder(int id)
+        {
+            var order = GetOrderById(id);
+            if (order != null)
+            {
+                order.ShippingInformation.DeliveryDate = DateTime.UtcNow;
+                order.Status = DbContext.Status.FirstOrDefault(x => x.Id == 4);
+                DbContext.Order.Update(order);
+                DbContext.SaveChanges();
+            }
+        }
+
+        public void RefuseOrder(int id)
+        {
+            var order = GetOrderById(id);
+            if (order != null)
+            {
+                order.Status = DbContext.Status.FirstOrDefault(x => x.Id == 3);
+                DbContext.Order.Update(order);
+                DbContext.SaveChanges();
+            }
+        }
+
+        public void AcceptAllOrders()
+        {
+            var list = GetAllWaitingOrder();
+            list.ForEach(order => AcceptOrder(order.Id));
+        }
+
+        public void RefuseAllOrders()
+        {
+            var list = GetAllWaitingOrder();
+            list.ForEach(order => RefuseOrder(order.Id));
+        }
+
+        public List<Discount> GetAllDiscount()
+        {
+            return DbContext.Discount.Where(x => x.Validity == true).ToList();
+        }
+
+        public List<Discount> GetAllDiscountBySearchName(string name)
+        {
+            return DbContext.Discount.Where(x => x.Validity == true && x.Name.Contains(name)).ToList();
+        }
+
+        public Discount GetDiscountById(int id)
+        {
+            return DbContext.Discount.FirstOrDefault(x => x.Id == id);
+        }
+
+        public void AddDiscount(Discount discount)
+        {
+            DbContext.Discount.Add(discount);
+            DbContext.SaveChanges();
+        }
+
+        public void UpdateDiscount(Discount discount)
+        {
+            if (discount != null)
+            {
+                DbContext.Discount.Update(discount);
+                DbContext.SaveChanges();
+            }
+        }
+
+        public void DeleteDiscount(Discount discount)
+        {
+            if (discount != null)
+            {
+                discount.Validity = false;
+                DbContext.Discount.Update(discount);
+                DbContext.SaveChanges();
+            }
+        }
+    }
 }

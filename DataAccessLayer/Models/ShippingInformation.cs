@@ -18,6 +18,6 @@ namespace DataAccessLayer.Models
         public DateTime? DeliveryDate { get; set; }
 
         [ForeignKey("DeliveryId")]
-        public Delivery? Delivery { get; set; }
+        public Delivery? Delivery { get; set; } = new();
     }
 }

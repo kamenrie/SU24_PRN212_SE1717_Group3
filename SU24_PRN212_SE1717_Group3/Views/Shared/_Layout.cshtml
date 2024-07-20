@@ -94,6 +94,8 @@
 					<div class="icon-cart" onclick="window.location.href='/Order'">
 						<i class="fa-solid fa-cart-shopping"></i>
 					</div>
+
+					
 					<div class="btn-Login">
 						<div class="icon-user">
 							<i class="fa-solid fa-user"></i>
@@ -103,9 +105,9 @@
 							<li class="menu">
 								<ul class="subnav-profile">
 									<li><a asp-action="Profile" asp-controller="Account">Profile</a> </li>
-									<li><a href="#">History Order</a></li>
+									<li><a asp-action="HistoryOrder" asp-controller="Order">History Order</a></li>
 									<li><a asp-action="MyFeedback" asp-controller="Account">My FeedBack</a></li>
-									<li><a href="#">Change Password</a> </li>
+									<li><a asp-action="ChangePass" asp-controller="Auth">Change Password</a> </li>
 									<li><a asp-action="Logout" asp-controller="Auth">Logout</a></li>
 								</ul>
 							</li>

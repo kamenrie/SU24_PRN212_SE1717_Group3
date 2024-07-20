@@ -9,13 +9,13 @@
 <div class="product-list">
 	<div class="category-list">
 		<div class="category-img" onclick="window.location.href='/Product'">
-			<img src="Product.jpg" alt="" />
+			<img src="~/img/ALL-Product.jpg" alt="" />
 			<p>All product</p>
 		</div>
 		@foreach (var category in ViewData["ListCategory"] as List<Category>)
 		{
 			<div class="category-img" onclick="window.location.href=`/Product/Category?CategoryName=@category.Name`">
-				<img src="@(category.Name).jpg" />
+				<img src="~/img/@(category.Name).jpg" />
 				<p>@category.Name</p>
 			</div>
 		}
@@ -40,7 +40,7 @@
 					<p class="price--old">$@(product.Price * 2)</p>
 				</div>
 				<div class="view">
-					<button type="button" onclick="window.location.href='/Product/Detail?Id=@product.Id'">View</button>
+					<button class="view-button" type="button" onclick="window.location.href='/Product/Detail?Id=@product.Id'">View</button>
 				</div>
 			</div>
 		}

@@ -13,6 +13,7 @@ namespace DataAccessLayer.Models
 
         public string? Description { get; set; }
 
+        [Column(TypeName = "numeric(18, 2)")]
         public double? Price { get; set; }
 
         public byte[]? Image { get; set; }

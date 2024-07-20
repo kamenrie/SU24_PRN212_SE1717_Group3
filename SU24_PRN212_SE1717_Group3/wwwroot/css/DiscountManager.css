@@ -1,0 +1,105 @@
+﻿.discount-search {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+    .discount-search .discount-search-box {
+        width: 80%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .discount-search button {
+        width: 10%;
+        padding: 1% 0;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background: #0094ff;
+        height: 100%;
+    }
+
+.buttons-container {
+    width: 66.66%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.add-voucher {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .add-voucher:hover {
+        background-color: #45a049;
+    }
+
+.voucher-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    box-sizing: border-box;
+    margin: 0 auto 20px auto;
+}
+
+.voucher {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f28b82;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.voucher-details {
+    margin-bottom: 10px;
+    width: 70%;
+    overflow: hidden;
+}
+
+    .voucher-details p {
+        margin: 5px 0;
+    }
+
+.edit-voucher, .delete-voucher {
+    background-color: #8bc34a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    height: max-content;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.edit-voucher {
+    background-color: #ff9800;
+}
+
+    .edit-voucher:hover {
+        background-color: #fb8c00;
+    }
+
+.delete-voucher {
+    background-color: #f44336;
+}
+
+    .delete-voucher:hover {
+        background-color: #e53935;
+    }

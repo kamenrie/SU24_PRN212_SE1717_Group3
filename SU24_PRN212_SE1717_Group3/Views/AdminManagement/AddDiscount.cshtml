@@ -1,0 +1,29 @@
+﻿@model Discount
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<link href="~/css/AddDiscount.css" rel="stylesheet" />
+
+<body>
+    <div class="form-container">
+        <h1>Add New Voucher</h1>
+        <form asp-action="AddDiscount" method="post">
+            <label for="name">Name:</label>
+            <input asp-for="Name" type="text" id="name" name="name" placeholder="Enter voucher name..." required>
+
+            <label for="description">Description:</label>
+            <textarea asp-for="Description" id="description" name="description" placeholder="Enter description..." rows="4" required></textarea>
+
+            <label for="percent">Discount Percentage:</label>
+            <input asp-for="Percent" type="number" id="percent" name="percent" placeholder="Enter discount percentage..." step="0.01" min="0" max="100" required>
+
+            <label for="quantity">Quantity:</label>
+            <input asp-for="Quantity" type="number" id="quantity" name="quantity" placeholder="Enter quantity..." min="1" required>
+
+            <button type="submit">Add Voucher</button>
+        </form>
+    </div>
+</body>

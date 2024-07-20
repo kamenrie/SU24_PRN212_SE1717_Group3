@@ -115,7 +115,7 @@ namespace DataAccessLayer.DAO
 			return revenueLastMonth ?? 0;
 		}
 
-		public async Task<Product?> GetMostSoldProduct()
+		public  Task<Product?> GetMostSoldProduct()
 		{
 			DateTime firstDayOfThisMonth = new DateTime(YearOfThisMonth, ThisMonth, 1);
 			DateTime lastDayOfThisMonth = firstDayOfThisMonth.AddMonths(1).AddDays(-1);
@@ -126,7 +126,7 @@ namespace DataAccessLayer.DAO
 				.GroupBy(x => x.ProductId)
 				.Select(x => x.Key)
 				.FirstOrDefault();
-			return mostSoldProduct == 0 ? null : await new ProductDAO(DbContext).GetProductById(mostSoldProduct);
+			return  mostSoldProduct == 0 ? null : new ProductDAO(DbContext).GetProductById(mostSoldProduct);
 		}
 
 	}

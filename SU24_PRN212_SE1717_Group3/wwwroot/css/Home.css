@@ -1,5 +1,5 @@
 ﻿body {
-    background-color: aliceblue;
+    background-color: #fff4ff;
 }
 
 img {
@@ -132,18 +132,18 @@ img {
     & button
 
 {
-    background-color: #F86969;
+    background-color: #83cdfb;
     padding: 3% 6%;
     width: 85%;
-    border: none;
+    border-radius: 14px;
     cursor: pointer;
     font-size: 1.5rem;
 }
 
 & button:hover {
     transition: 0.2s;
-    background-color: #ac4e4e;
-    color: white;
+    filter: brightness(0.9);
+    color: black;
 }
 
 }

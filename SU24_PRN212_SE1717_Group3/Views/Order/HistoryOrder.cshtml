@@ -1,0 +1,94 @@
+﻿    @model List<DataAccessLayer.Models.Order>
+    @inject DataAccessLayer.DAO.OrderDAO dao
+
+<link href="~/css/HistoryOrder.css" rel="stylesheet" />
+<body>
+
+    <div class="historyOrder-container">
+        <div class="historyOrder">
+            <h1 class="historyOrder-header">History Order</h1>
+            <div class="historyOrder-body">
+                <table class="historyOrder-body-table">
+                    <thead>
+                        <tr>
+                            <th>Recipient<br />Name</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Order<br />Date</th>
+                            <th>Delivery<br />Date</th>
+                            <th>Delivery<br />Type</th>
+                            <th>Discount</th>
+                            <th>Amount</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model)
+                        {
+                            <tr class="historyOrder-body-table-content" onclick="showContent(@order.Id)">
+                                <td>@order.ShippingInformation?.RecipientName</td>
+                                <td>@order.ShippingInformation?.Address</td>
+                                <td>@order.ShippingInformation?.Phone</td>
+                                <td>@order.OrderDate</td>
+                                <td>@order.ShippingInformation?.DeliveryDate</td>
+                                <td style="text-transform: uppercase">@order.ShippingInformation?.Delivery.Type</td>
+                                <td>@order.Discount?.Percent</td>
+                                <td>@order.Quantity</td>
+                                <td><strong>$@order.Total</strong></td>
+                                <td class="historyOrder-body-table-status">
+                                    @if (order.Status.Id == 1)
+                                    {
+                                        <p class="incart">In Cart</p>
+                                    }
+
+                                    @if (order.Status.Id == 2)
+                                    {
+                                        <p class="wait">Waiting For Acceptance</p>
+                                    }
+                                    @if (order.Status.Id == 3)
+                                    {
+                                        <p class="refuse">Refused</p>
+                                    }
+
+                                    @if (order.Status.Id == 4)
+                                    {
+                                        <p class="success">Accepted</p>
+                                    }
+                                </td>
+                            </tr>
+                            var listOrderDetail = await dao.GetAllOrderDetailByOrder(order);
+                            @foreach (var orderDetail in listOrderDetail)
+                            {
+                                <tr id="subcontent-@order.Id" class="historyOrder-body-table-subcontent" style="display: none;">
+                                    <td></td>
+                                    <td></td>
+                                    <td class="historyOrder-body-table-subcontent-image">
+                                        <img src="data:image/*;base64, @Convert.ToBase64String(orderDetail.Product.Image)">
+                                    </td>
+                                    <td>@orderDetail.Product.Name</td>
+                                    <td>$<span>@orderDetail.Product.Price</span>/1 product</td>
+                                    <td><strong>@orderDetail.Amount</strong></td>
+                                    <td><strong>$@orderDetail.Subtotal</strong></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function showContent(id) {
+        const subcontent = document.getElementById('subcontent-' + id);
+        if (subcontent.style.display === 'none') {
+            subcontent.style.display = 'table-row';
+        } else {
+            subcontent.style.display = 'none';
+        }
+    }
+</script>

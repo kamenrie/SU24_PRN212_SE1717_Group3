@@ -1,6 +1,7 @@
 ﻿
 using DataAccessLayer.Models;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 using Utilites;
 
 namespace DataAccessLayer.DAO
@@ -93,6 +94,7 @@ namespace DataAccessLayer.DAO
 
         public async Task AddOrderDetail(Order order, Product product, Size size, int amount)
         {
+
             var orderDetail = new OrderDetail
             {
                 Order = order,
@@ -189,6 +191,24 @@ namespace DataAccessLayer.DAO
             });
         }
 
+        public async Task<List<Order>> HistoryOrder(Account account)
+        {
+            var ListHistoryOrder = await DbContext.Order
+            .Include(x => x.Account)
+            .Include(x => x.ShippingInformation).ThenInclude(x => x.Delivery)
+            .Include(x => x.Discount)
+            .Include(x => x.Status)
+            .Where(x => x.Account == account).ToListAsync();
+            return ListHistoryOrder;
+        }
+
+        public async Task<List<OrderDetail>> OrderDetail()
+        {
+            var ListDetail = await DbContext.OrderDetail.ToListAsync();
+            return ListDetail;
+        }
+
+
         public async Task<List<Delivery>> GetAllDelivery()
         {
             var ListDelivery = await DbContext.Delivery.ToListAsync();
@@ -214,7 +234,6 @@ namespace DataAccessLayer.DAO
                                             .Include(x => x.Account)
                                             .Where(x => x.Account == account)
                                             .Select(x => x.Discount).ToListAsync();
-
             var ListDiscount = await DbContext.Discount
                                                 .Where(x => x.Validity == true
                                                          && x.Quantity != 0)
@@ -227,6 +246,11 @@ namespace DataAccessLayer.DAO
         {
             var Discount = await DbContext.Discount.FirstOrDefaultAsync(x => x.Id == Id);
             return Discount;
+        }
+        public async Task<List<Discount>> GetAllDiscount()
+        {
+            var discount = await DbContext.Discount.ToListAsync();
+            return discount;
         }
     }
 }

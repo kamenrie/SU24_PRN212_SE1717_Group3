@@ -190,22 +190,21 @@
 
 .view {
     text-align: center;
-    & button
+}
 
-{
+
+.view-button {
     background-color: #f86969;
     padding: 4%;
     width: 65%;
-    border: none;
+    border-radius: 13px;
     cursor: pointer;
 }
 
-& button:hover {
+.view0-button:hover {
     transition: 0.2s;
     background-color: #ac4e4e;
     color: white;
-}
-
 }
 
 .price--old {

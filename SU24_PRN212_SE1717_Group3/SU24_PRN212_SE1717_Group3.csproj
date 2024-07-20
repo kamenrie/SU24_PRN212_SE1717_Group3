@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="NewFolder\**" />
+    <Content Remove="NewFolder\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\js\Profile.js" />
   </ItemGroup>
 
@@ -15,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\img\giaynam.jpg" />
     <None Include="wwwroot\js\Profile.js" />
   </ItemGroup>
 

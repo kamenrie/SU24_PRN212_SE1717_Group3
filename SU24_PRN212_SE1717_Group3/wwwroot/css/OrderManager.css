@@ -1,0 +1,252 @@
+﻿.order-management-button {
+    display: flex;
+    align-items: center;
+
+    & button {
+        padding: 1%;
+        font-size: 1.5rem;
+        border: hidden;
+        font-weight: bold;
+        transition: 0.1s ease;
+        font-family: "Roboto";
+        cursor: pointer;
+
+        &:hover {
+            filter: brightness(0.8);
+        }
+
+        &:active {
+            filter: brightness(0.6);
+        }
+    }
+}
+
+.order-management-button-accept-all {
+    width: 50%;
+    background-color: #00FF00;
+    border-radius: 15px 0 0 15px;
+}
+
+.order-management-button-reject-all {
+    width: 50%;
+    background-color: #FF0000;
+    color: #CCCCCC;
+    border-radius: 0 15px 15px 0;
+}
+
+.order-management-table {
+    width: 100%;
+    border-spacing: 0 0.5rem;
+    margin: 1% 0;
+
+    & td {
+        text-align: center;
+        height: 100px;
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+
+    & th:nth-child(1) {
+        width: 5%;
+    }
+
+    & th:nth-child(6) {
+        width: 2%;
+    }
+
+    & th:nth-child(7) {
+        width: 40%;
+    }
+}
+
+.order-management-table-header {
+    text-align: center;
+    background-color: #FF523B;
+    color: white;
+
+    & th {
+        font-size: 1.25rem;
+        padding: 1.5% 0;
+    }
+}
+
+.order-management-table-order {
+    & td:nth-child(6) {
+        padding: 2% 0;
+        background-color: #CCCCCC;
+        transition: 0.2s ease;
+        cursor: pointer;
+        position: relative;
+
+        &:hover {
+            background: #999;
+        }
+
+        &.active .order-management-table-order-dropdown-info {
+            display: block;
+        }
+    }
+
+    & td:nth-child(7) {
+        padding: 0% 1%;
+    }
+}
+
+.order-management-table-order-dropdown-info {
+    position: absolute;
+    top: 100%;
+    right: 100%;
+    background: #0FF;
+    width: max-content;
+    width: 2000%;
+    z-index: 1;
+    display: none;
+
+    &::before {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: -50px;
+        background: #0FF;
+        width: 50px;
+        height: 50px;
+        clip-path: polygon(100% 0, 0 100%, 50% 100%);
+    }
+
+    & p {
+        text-align: left;
+        font-size: 1.25rem;
+        font-weight: 400;
+        margin-top: 2.5%;
+        margin-left: 5%;
+    }
+
+    & input,
+    textarea {
+        padding: 2%;
+        width: 90%;
+        margin-bottom: 2.5%;
+        font-size: 1.25rem;
+        border: none;
+        resize: none;
+    }
+}
+
+.order-management-table-order-button {
+    display: flex;
+    justify-content: space-between;
+
+    & button {
+        width: 49%;
+        padding: 2% 0;
+        border: hidden;
+        font-size: 1.5rem;
+        font-family: "Roboto";
+        font-weight: bold;
+        transition: 0.25s ease;
+        cursor: pointer;
+
+        &:hover {
+            filter: brightness(0.9);
+            transform: scale(1.05);
+        }
+    }
+
+    & .order-management-table-order-button-accept {
+        background-color: #00FF00;
+    }
+
+    & .order-management-table-order-button-reject {
+        background-color: #FF0000;
+    }
+}
+
+
+.blur {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #00000088;
+    z-index: 1;
+    cursor: no-drop;
+    display: none;
+}
+
+.order-management-confirm-acceptAll {
+    background-color: #00FF99;
+    margin-bottom: 1%;
+    text-align: center;
+    padding: 1% 3%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 3;
+    display: none;
+    width: 50%;
+
+    & p {
+        padding: 5% 10% 0;
+        font-weight: bolder;
+        font-family: cursive;
+        font-size: 1.25rem;
+    }
+}
+
+.order-management-confirm-rejectAll {
+    background-color: #FF9900;
+    text-align: center;
+    padding: 1% 3%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    cursor: pointer;
+    z-index: 3;
+    display: none;
+    & p {
+        padding: 5% 10% 0;
+        font-weight: bolder;
+        font-family: cursive;
+        font-size: 1.25rem;
+    }
+}
+
+.order-management-confirm-button {
+    display: flex;
+    justify-content: space-around;
+    margin: 10% 0 5%;
+
+    & button {
+        width: 30%;
+        padding: 2% 1%;
+        border: hidden;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 1.25rem;
+        font-family: "Roboto";
+
+        &:hover {
+            filter: brightness(0.8);
+        }
+    }
+
+    & .order-management-confirm-button-acceptAll-yes {
+        background-color: #CCFF00;
+    }
+
+    & .order-management-confirm-button-rejectAll-yes {
+        background-color: #FF0033;
+
+    }
+
+    & .order-management-confirm-button-cancel {
+        color: #444444;
+        background: none;
+    }
+}

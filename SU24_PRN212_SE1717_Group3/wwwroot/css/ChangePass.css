@@ -1,0 +1,61 @@
+﻿
+
+.change-password-container {
+    background-color: #FF9999;
+    padding: 40px;
+    margin: 25%;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 50%;
+}
+
+.change-password-header {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    border-radius: 20px 20px 0 0;
+    font-size: 2em;
+}
+
+.change-password-form-group {
+    margin: 30px 0;
+}
+
+.change-password-label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.change-password-input {
+    width: calc(100% - 40px);
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1.5em;
+}
+
+.change-password-button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.change-password-btn {
+    width: 48%;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+.change-password-btn-cancel {
+    background-color: #FF3300;
+    color: black;
+}
+
+.change-password-btn-save {
+    background-color: #33FF00   ;
+    color: black;
+}

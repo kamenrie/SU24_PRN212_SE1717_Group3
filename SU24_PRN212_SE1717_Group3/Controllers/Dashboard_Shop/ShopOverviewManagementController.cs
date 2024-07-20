@@ -13,7 +13,7 @@ namespace SU24_PRN212_SE1717_Group3.Controllers.Dashboard_Shop
 				return RedirectToAction("Index", "Home");
 			}
 
-			ViewData["MostSoldProduct"] = await shopManagementDAO.GetMostSoldProduct();
+			ViewData["MostSoldProduct"] =  shopManagementDAO.GetMostSoldProduct();
 
 			ViewData["ProductSold"] = shopManagementDAO.GetProductSold();
 			ViewData["ProductSoldLastMonth"] = shopManagementDAO.GetProductLastMonth();

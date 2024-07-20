@@ -4,6 +4,7 @@
 
 {
     width: 100%;
+    margin: 1%;
 }
 
 }
@@ -16,7 +17,7 @@ table {
 }
 
 .table {
-    background-color: #F95F5F;
+    background-color: #df8585;
     text-align: center;
     & th
 
@@ -87,6 +88,8 @@ input::-webkit-inner-spin-button {
         cursor: pointer;
         color: aliceblue;
         background-color: #438a1f;
+        border-radius: 17px;
+        margin: 3%;
     }
 
         .checkout-button button:hover {

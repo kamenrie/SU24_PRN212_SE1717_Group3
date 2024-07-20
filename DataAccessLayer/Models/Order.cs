@@ -12,6 +12,7 @@ namespace DataAccessLayer.Models
 
         public int? Quantity { get; set; }
 
+        [Column(TypeName = "numeric(18, 2)")]
         public double? Total { get; set; }
 
         public DateTime? OrderDate { get; set; }

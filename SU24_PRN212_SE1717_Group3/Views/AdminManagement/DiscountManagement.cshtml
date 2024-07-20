@@ -1,0 +1,36 @@
+﻿@model List<Discount>
+@{
+    Layout = "~/Views/Shared/AdminDashboardLayout.cshtml";
+    ViewData["Title"] = "Admin Discount Management";
+}
+
+<link href="~/css/DiscountManager.css" rel="stylesheet" />
+
+<body>
+    <form class="discount-search" asp-action="SearchDiscount">
+        <input type="search" name="discountName" class="discount-search-box" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+
+    <div class="buttons-container">
+        <button class="add-voucher" onclick="window.location.href='/AdminManagement/AddDiscount'"> Add Voucher</button>
+    </div>
+
+    @foreach (Discount discount in Model)
+    {
+        <div class="voucher-container">
+            <div class="voucher">
+                <div class="voucher-details">
+                    <p>Name: @discount.Name</p>
+                    <p>Description: @discount.Description</p>
+                    <p>Discount: @discount.Percent%</p>
+                    <p>Quantity: @discount.Quantity</p>
+                </div>
+                <div class="voucher-button">
+                    <button class="edit-voucher" onclick="window.location.href='/AdminManagement/UpdateDiscount?id=@discount.Id'">Edit</button>
+                    <button class="delete-voucher" onclick="window.location.href='/AdminManagement/DeleteDiscount?id=@discount.Id'">Delete</button>
+                </div>
+            </div>
+        </div>
+    }
+</body>

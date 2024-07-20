@@ -24,6 +24,7 @@ namespace DataAccessLayer.Models
 
         public int? Amount { get; set; }
 
+        [Column(TypeName = "numeric(18, 2)")]
         public double? Subtotal { get; set; }
 
     }

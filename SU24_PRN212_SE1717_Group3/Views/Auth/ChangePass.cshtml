@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<link href="~/css/ChangePass.css" rel="stylesheet" />
+
+<body class="body-container1">
+    <form asp-action="ChangePass" asp-controller="Auth" class="change-password-container" method="post">
+        <div class="change-password-header">
+            Change Password
+        </div>
+        <div class="change-password-form-group">
+            <label for="old-pass" class="change-password-label">Old password</label>
+            <input type="password" id="old-pass" class="change-password-input change-password-input-old" name="oldPass" placeholder="Old pass...">
+        </div>
+        <div class="change-password-form-group">
+            <label for="new-pass" class="change-password-label">New password</label>
+            <input type="password" id="new-pass" class="change-password-input change-password-input-new" name="newPass" placeholder="New pass...">
+        </div>
+        <div class="change-password-form-group">
+            <label for="confirm-pass" class="change-password-label">Confirm password</label>
+            <input type="password" id="confirm-pass" class="change-password-input change-password-input-confirm" name="confirmPass" placeholder="Confirm pass...">
+        </div>
+        <div class="change-password-button-group">
+            <button class="change-password-btn change-password-btn-cancel">Cancel</button>
+            <button class="change-password-btn change-password-btn-save">Save</button>
+        </div>
+    </form>
+</body>

@@ -1,0 +1,30 @@
+﻿@model List<Discount>
+
+
+<link href="~/css/DiscountManager.css" rel="stylesheet" />
+
+<body>
+    <form class="discount-search" asp-action="SearchDiscount">
+        <input type="search" name="discountName" class="discount-search-box" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+
+
+
+    @foreach (var discount in Model)
+    {
+        <div class="voucher-container">
+            <div class="voucher">
+                <div class="voucher-details">
+                    <p>Name: @discount.Name</p>
+                    <p>Description: @discount.Description</p>
+                    <p>Discount: @discount.Percent%</p>
+                    <p>Quantity: @discount.Quantity</p>
+                </div>
+                <div class="voucher-button">
+                    <button class="edit-voucher" onclick="window.location.href='/AdminManagement/UpdateDiscount?id=@discount.Id'">Get Discount</button>
+                </div>
+            </div>
+        </div>
+    }
+</body>

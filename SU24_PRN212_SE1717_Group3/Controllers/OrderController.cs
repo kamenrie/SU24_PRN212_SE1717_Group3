@@ -2,6 +2,8 @@
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol.Plugins;
+using System.Collections;
 
 namespace SU24_PRN212_SE1717_Group3.Controllers
 {
@@ -160,6 +162,33 @@ namespace SU24_PRN212_SE1717_Group3.Controllers
             var Order = await orderDAO.GetOrderByAccount(account);
             await orderDAO.Checkout(Order, shipping, Delivery, Discount);
             return Redirect($"https://img.vietqr.io/image/ICB-102877579404-compact.png?amount={Order.Total * 24000}&addInfo=account{Order.Account.Id}%20order{Order.Id}");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> HistoryOrder()
+        {
+
+            var account = await accountDAO.GetAccountById(HttpContext.Session.GetInt32("accountId"));
+            if (account == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            var HistoryOrder = await orderDAO.HistoryOrder(account);
+           
+
+            return View(HistoryOrder);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AcceptDiscount()
+        {
+            var account = await accountDAO.GetAccountById(HttpContext.Session.GetInt32("accountId"));
+            if (account == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            var discount = await orderDAO.GetAllDiscount();
+            return View(discount);
         }
     }
 }

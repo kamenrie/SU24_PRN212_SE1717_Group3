@@ -145,7 +145,7 @@ namespace DataAccessLayer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RecipientName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DeliveryDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -202,7 +202,7 @@ namespace DataAccessLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<double>(type: "float", nullable: true),
+                    Price = table.Column<decimal>(type: "numeric(18,2)", nullable: true),
                     Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     Availability = table.Column<bool>(type: "bit", nullable: true),
                     ShopId = table.Column<int>(type: "int", nullable: true),
@@ -283,7 +283,7 @@ namespace DataAccessLayer.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(type: "int", nullable: true),
-                    Total = table.Column<double>(type: "float", nullable: true),
+                    Total = table.Column<decimal>(type: "numeric(18,2)", nullable: true),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     StatusId = table.Column<int>(type: "int", nullable: true),
                     AccountId = table.Column<int>(type: "int", nullable: true),
@@ -323,7 +323,7 @@ namespace DataAccessLayer.Migrations
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     SizeId = table.Column<int>(type: "int", nullable: false),
                     Amount = table.Column<int>(type: "int", nullable: true),
-                    Subtotal = table.Column<double>(type: "float", nullable: true)
+                    Subtotal = table.Column<decimal>(type: "numeric(18,2)", nullable: true)
                 },
                 constraints: table =>
                 {
